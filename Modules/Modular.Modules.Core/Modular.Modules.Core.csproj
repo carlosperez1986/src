@@ -19,13 +19,11 @@
 
   <ItemGroup>
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.dll" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.pdb" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.dll" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.dll" />
   </ItemGroup>
 </Project>

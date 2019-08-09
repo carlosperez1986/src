@@ -44,6 +44,46 @@
     <None Remove="Modules\Modular.Modules.ModuleWebapi\bin\**" />
     <None Remove="Modules\Modular.Modules.NETStandard\bin\**" />
     <None Remove="Views\**" />
+    <Content Remove="Modules\Modular.Modules.Core\Views\_ViewStart.cshtml" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\css\site.css" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\favicon.ico" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\js\site.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\LICENSE" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery\dist\jquery.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery\LICENSE.txt" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Remove="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
+    <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
+    <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -86,139 +126,126 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\css\site.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\favicon.ico">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\js\site.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\bootstrap\LICENSE">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation\dist\additional-methods.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation\dist\additional-methods.min.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation\dist\jquery.validate.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery-validation\LICENSE.md">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery\dist\jquery.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery\dist\jquery.min.js">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery\dist\jquery.min.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Modules\Modular.Modules.NETStandard\wwwroot\lib\jquery\LICENSE.txt">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <ProjectReference Include="..\Core\Modular.Core\Modular.Core.csproj" />
+    <ProjectReference Include="..\Modules\Modular.Modules.Core\Modular.Modules.Core.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Modular.Core\Modular.Core.csproj" />
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\css\site.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\favicon.ico">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\js\site.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\bootstrap\LICENSE">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery\dist\jquery.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery\dist\jquery.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery\dist\jquery.min.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery\LICENSE.txt">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\additional-methods.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\additional-methods.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\jquery.validate.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation\LICENSE.md">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
-
-
   <ItemGroup>
     <Content Update="Modules\Modular.Modules.ModuleA\Views\TestA\Index.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Update="Modules\Modular.Modules.ModuleC\Views\TestC\Index.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Modules\Modular.Modules.NETStandard\Views\NETStandard\Index.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Modules\Modular.Modules.NETStandard\Views\NETStandard\Privacy.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Modules\Modular.Modules.NETStandard\Views\_ViewImports.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Modules\Modular.Modules.NETStandard\Views\_ViewStart.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
@@ -227,29 +254,20 @@
   <ItemGroup>
     <Folder Include="Modules\Modular.Modules.ModuleWebapi\" />
     <Folder Include="Modules\Modular.Modules.ModuleWebapi\bin\" />
-    <Folder Include="Modules\Modular.Modules.NETStandard\bin\" />
+    <Folder Include="Modules\Modular.Modules.Core\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
-    <Folder Include="Modules\Modular.Modules.NETStandard\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleWebapi\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.Core\bin\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\" />
+    <Folder Include="Modules\Modular.Modules.Core\wwwroot\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\" />
+    <Folder Include="Modules\Modular.Modules.Core\wwwroot\" />
+    <Folder Include="Modules\Modular.Modules.Core\bin\" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Reference Include="Modular.Modules.NETStandard">
-      <HintPath>..\Modules\Modular.Modules.NETStandard\bin\Debug\netstandard2.0\Modular.Modules.NETStandard.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Modules\Modular.Modules.NETStandard\bin\Debug\netstandard2.0\Modular.Modules.NETStandard.deps.json" />
-    <None Include="Modules\Modular.Modules.NETStandard\bin\Debug\netstandard2.0\Modular.Modules.NETStandard.dll" />
-    <None Include="Modules\Modular.Modules.NETStandard\bin\Debug\netstandard2.0\Modular.Modules.NETStandard.pdb" />
     <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.deps.json" />
     <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.dll" />
     <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.pdb" />
@@ -264,5 +282,11 @@
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.pdb" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
+    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
+    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
+    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 </Project>

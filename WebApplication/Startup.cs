@@ -108,7 +108,7 @@ namespace Modular.WebApplication
                             //}
                             //throw;
                         }
-                         
+
                         if (assembly.FullName.Contains(moduleFolder.Name))
                         {
                             modules.Add(new ModuleInfo { Name = moduleFolder.Name, Assembly = assembly, Path = moduleFolder.PhysicalPath });
@@ -132,7 +132,7 @@ namespace Modular.WebApplication
                 // Registra los módulos para injectarlos // 
                 try
                 {
-                     var moduleInitializerType = module.Assembly.GetTypes().Where(x => typeof(IModuleInitializer).IsAssignableFrom(x)).FirstOrDefault();
+                    var moduleInitializerType = module.Assembly.GetTypes().Where(x => typeof(IModuleInitializer).IsAssignableFrom(x)).FirstOrDefault();
 
                     if (moduleInitializerType != null && moduleInitializerType != typeof(IModuleInitializer))
                     {
@@ -143,7 +143,7 @@ namespace Modular.WebApplication
                 catch (Exception ex)
                 {
                     ex.Message.ToString();
-                } 
+                }
             }
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -192,7 +192,7 @@ namespace Modular.WebApplication
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=NETStandard}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

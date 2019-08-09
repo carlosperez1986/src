@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Modules.ModuleC", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Modules.ModuleWebapi", "Modules\Modular.Modules.ModuleWebapi\Modular.Modules.ModuleWebapi.csproj", "{06AB3332-F65E-41B8-A5A6-D68A34B6F529}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Modules.NETStandard", "Modules\Modular.Modules.NETStandard\Modular.Modules.NETStandard.csproj", "{114B8C76-009C-4785-9AE1-6E2924A4A551}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,10 +53,6 @@ Global
 		{06AB3332-F65E-41B8-A5A6-D68A34B6F529}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06AB3332-F65E-41B8-A5A6-D68A34B6F529}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06AB3332-F65E-41B8-A5A6-D68A34B6F529}.Release|Any CPU.Build.0 = Release|Any CPU
-		{114B8C76-009C-4785-9AE1-6E2924A4A551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{114B8C76-009C-4785-9AE1-6E2924A4A551}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{114B8C76-009C-4785-9AE1-6E2924A4A551}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{114B8C76-009C-4785-9AE1-6E2924A4A551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,7 +61,6 @@ Global
 		{0EE623A1-7454-4535-B52F-58E2C9649CC5} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 		{8CC7C273-62D5-446E-B4E8-F0CA882F217C} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 		{06AB3332-F65E-41B8-A5A6-D68A34B6F529} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
-		{114B8C76-009C-4785-9AE1-6E2924A4A551} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73D8136C-F87F-4B3E-8474-B37FD4B377B3}
