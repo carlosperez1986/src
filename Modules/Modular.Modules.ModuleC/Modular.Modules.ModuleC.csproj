@@ -15,7 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.6" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.6"><PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+<Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+</PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,4 +30,15 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
+    <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Core.dll" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Core.pdb" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.dll" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.pdb" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
+  </ItemGroup>
 </Project>

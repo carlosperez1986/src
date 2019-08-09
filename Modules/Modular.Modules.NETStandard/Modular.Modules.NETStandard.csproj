@@ -177,4 +177,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="bin\Debug\netstandard2.0\Modular.Modules.NETStandard.deps.json" />
+    <None Include="bin\Debug\netstandard2.0\Modular.Modules.NETStandard.dll" />
+    <None Include="bin\Debug\netstandard2.0\Modular.Modules.NETStandard.pdb" />
+  </ItemGroup>
 </Project>

@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.deps.json" />
+    <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
+    <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
+  </ItemGroup>
 </Project>

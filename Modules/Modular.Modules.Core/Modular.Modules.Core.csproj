@@ -10,8 +10,22 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.App">
+      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.pdb" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.dll" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.dll" />
+  </ItemGroup>
 </Project>

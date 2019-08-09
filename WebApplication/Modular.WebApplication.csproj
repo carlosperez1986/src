@@ -203,11 +203,6 @@
 
 
   <ItemGroup>
-    <None Include="Modules\Modular.Modules.ModuleA\Views\TestA\Index.cshtml" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <Content Update="Modules\Modular.Modules.ModuleA\Views\TestA\Index.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -231,6 +226,12 @@
 
   <ItemGroup>
     <Folder Include="Modules\Modular.Modules.ModuleWebapi\" />
+    <Folder Include="Modules\Modular.Modules.ModuleWebapi\bin\" />
+    <Folder Include="Modules\Modular.Modules.NETStandard\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.NETStandard\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleWebapi\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
   </ItemGroup>
 
 
@@ -245,4 +246,23 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Modules\Modular.Modules.NETStandard\bin\Debug\netstandard2.0\Modular.Modules.NETStandard.deps.json" />
+    <None Include="Modules\Modular.Modules.NETStandard\bin\Debug\netstandard2.0\Modular.Modules.NETStandard.dll" />
+    <None Include="Modules\Modular.Modules.NETStandard\bin\Debug\netstandard2.0\Modular.Modules.NETStandard.pdb" />
+    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.deps.json" />
+    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.dll" />
+    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.pdb" />
+    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.dev.json" />
+    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.json" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.dll" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.pdb" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.dll" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.pdb" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
+  </ItemGroup>
 </Project>
