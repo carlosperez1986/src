@@ -16,7 +16,7 @@ namespace Modular.Modules.ModuleC.Controllers
     {
         public string PruebaC()
         {
-            return "a";
+            return "a1";
         }
     }
 

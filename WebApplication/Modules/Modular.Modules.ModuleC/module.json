@@ -1,0 +1,6 @@
+{
+    "id": "Modular.Modules.ModuleC",
+    "name": "ModuleC",
+    "isBundledWithHost": false,
+    "version": "1.0.0"
+}

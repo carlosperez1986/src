@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SimplCommerce.Infrastructure.Data;
-using SimplCommerce.Module.Core.Models;
+using Modular.Core.Data;
+using Modular.Core.Models;
 
 namespace Modular.Modules.Core.Data
 {

@@ -18,41 +18,36 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Modular.Core;
 using Modular.Core.Data;
-using Modular.WebHost.Extensions;
+using Modular.Core.Modules;
+using Modular.Modules.Core;
+using Modular.Modules.Core.Data;
+using Modular.Web.Extensions;
+using Modular.WebApplication.Extensions;
+
 
 namespace Modular.WebApplication
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IList<ModuleInfo> modules = new List<ModuleInfo>();
 
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
-            Configuration = configuration;
-
-            _hostingEnvironment = env;
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                // builder.AddUserSecrets();
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
+            GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
+
+            services.AddModules(_hostingEnvironment.ContentRootPath);
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -63,142 +58,168 @@ namespace Modular.WebApplication
             //services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             //services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
+            services.AddCustomizedDataStore(_configuration);
+            services.AddCustomizedIdentity(_configuration);
+            services.AddHttpClient();
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
+
+
+            //services.LoadInstalledModules(modules, _hostingEnvironment);
+
+            //services.AddCustomizedDataStore(Configuration);
+            //services.AddCustomizedIdentity();
+
+            services.AddCustomizedMvc(GlobalConfiguration.Modules);
 
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.ViewLocationExpanders.Add(new ModuleViewLocationExpander());
             });
 
-            string xx = _hostingEnvironment.WebRootPath;
 
-            var moduleRootFolder = _hostingEnvironment.ContentRootFileProvider.GetDirectoryContents("Modules");
+            var sp = services.BuildServiceProvider();
+            var moduleInitializers = sp.GetServices<Core.Modules.IModuleInitializer>();
 
-            foreach (var moduleFolder in moduleRootFolder.Where(x => x.IsDirectory))
+            foreach (var moduleInitializer in moduleInitializers)
             {
-                var binFolder = new DirectoryInfo(Path.Combine(moduleFolder.PhysicalPath, "bin"));
-                if (!binFolder.Exists)
-                {
-                    continue;
-                }
-
-                foreach (var file in binFolder.GetFileSystemInfos("*.dll", SearchOption.AllDirectories))
-                {
-                    try
-                    {
-                        Assembly assembly;
-
-                        try
-                        {
-                            assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(file.FullName);
-                        }
-                        catch (FileLoadException ex)
-                        {
-                            assembly = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(file.Name)));
-                            if (assembly == null)
-                            {
-                                throw;
-                            }
-
-                            string loadedAssemblyVersion = FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
-                            string tryToLoadAssemblyVersion = FileVersionInfo.GetVersionInfo(file.FullName).FileVersion;
-
-                            // Or log the exception somewhere and don't add the module to list so that it will not be initialized
-                            if (tryToLoadAssemblyVersion != loadedAssemblyVersion)
-                            {
-                                throw new Exception($"Cannot load {file.FullName} {tryToLoadAssemblyVersion} because {assembly.Location} {loadedAssemblyVersion} has been loaded");
-                            }
-                            //if (ex.Message == "Assembly with same name is already loaded")
-                            //{
-                            //    continue;
-                            //}
-                            //throw;
-                        }
-
-                        if (assembly.FullName.Contains(moduleFolder.Name))
-                        {
-                            modules.Add(new ModuleInfo { Name = moduleFolder.Name, Assembly = assembly, Path = moduleFolder.PhysicalPath });
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.Message.ToString();
-                    }
-
-                }
+                moduleInitializer.ConfigureServices(services);
             }
 
-            var mvcBuilder = services.AddMvc();
-            var moduleInitializerInterface = typeof(IModuleInitializer);
-            foreach (var module in modules)
-            {
-                // Register controller from modules
-                mvcBuilder.AddApplicationPart(module.Assembly);
 
-                // Registra los módulos para injectarlos // 
-                try
-                {
-                    var moduleInitializerType = module.Assembly.GetTypes().Where(x => typeof(IModuleInitializer).IsAssignableFrom(x)).FirstOrDefault();
 
-                    if (moduleInitializerType != null && moduleInitializerType != typeof(IModuleInitializer))
-                    {
-                        var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
-                        moduleInitializer.Init(services);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.Message.ToString();
-                }
-            }
+            //string xx = _hostingEnvironment.WebRootPath;
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //var moduleRootFolder = _hostingEnvironment.ContentRootFileProvider.GetDirectoryContents("Modules");
+
+            //foreach (var moduleFolder in moduleRootFolder.Where(x => x.IsDirectory))
+            //{
+            //    var binFolder = new DirectoryInfo(Path.Combine(moduleFolder.PhysicalPath, "bin"));
+            //    if (!binFolder.Exists)
+            //    {
+            //        continue;
+            //    }
+
+            //    foreach (var file in binFolder.GetFileSystemInfos("*.dll", SearchOption.AllDirectories))
+            //    {
+            //        try
+            //        {
+            //            Assembly assembly;
+
+            //            try
+            //            {
+            //                assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(file.FullName);
+            //            }
+            //            catch (FileLoadException ex)
+            //            {
+            //                assembly = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(file.Name)));
+            //                if (assembly == null)
+            //                {
+            //                    throw;
+            //                }
+
+            //                string loadedAssemblyVersion = FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
+            //                string tryToLoadAssemblyVersion = FileVersionInfo.GetVersionInfo(file.FullName).FileVersion;
+
+            //                // Or log the exception somewhere and don't add the module to list so that it will not be initialized
+            //                if (tryToLoadAssemblyVersion != loadedAssemblyVersion)
+            //                {
+            //                    throw new Exception($"Cannot load {file.FullName} {tryToLoadAssemblyVersion} because {assembly.Location} {loadedAssemblyVersion} has been loaded");
+            //                }
+            //                //if (ex.Message == "Assembly with same name is already loaded")
+            //                //{
+            //                //    continue;
+            //                //}
+            //                //throw;
+            //            }
+
+            //            if (assembly.FullName.Contains(moduleFolder.Name))
+            //            {
+            //                modules.Add(new ModuleInfo { Name = moduleFolder.Name, Assembly = assembly, Path = moduleFolder.PhysicalPath });
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            ex.Message.ToString();
+            //        }
+
+            //    }
+            //}
+
+            //var mvcBuilder = services.AddMvc();
+            //var moduleInitializerInterface = typeof(IModuleInitializer);
+            //foreach (var module in modules)
+            //{
+            //    // Register controller from modules
+            //    mvcBuilder.AddApplicationPart(module.Assembly);
+
+            //    // Registra los módulos para injectarlos // 
+            //    try
+            //    {
+            //        var moduleInitializerType = module.Assembly.GetTypes().Where(x => typeof(IModuleInitializer).IsAssignableFrom(x)).FirstOrDefault();
+
+            //        if (moduleInitializerType != null && moduleInitializerType != typeof(IModuleInitializer))
+            //        {
+            //            var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
+            //            moduleInitializer.Init(services);
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ex.Message.ToString();
+            //    }
+            //}
+
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //services.AddCustomizedMvc(modules);
+
+            //return services.Build(Configuration, _hostingEnvironment);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                //app.UseBrowserLink();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseWhen(
+                    context => !context.Request.Path.StartsWithSegments("/api"),
+                    a => a.UseExceptionHandler("/Home/Error")
+                );
                 app.UseHsts();
             }
 
+            app.UseWhen(
+                context => !context.Request.Path.StartsWithSegments("/api"),
+                a => a.UseStatusCodePagesWithReExecute("/Home/ErrorWithCode/{0}")
+            );
+
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseCustomizedStaticFiles(env);
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimplCommerce API V1");
+            //});
+
             app.UseCookiePolicy();
+            app.UseCustomizedIdentity();
+            app.UseCustomizedRequestLocalization();
+            app.UseCustomizedMvc();
 
-            foreach (var module in modules)
+            var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
+            foreach (var moduleInitializer in moduleInitializers)
             {
-                var wwwrootDir = new DirectoryInfo(Path.Combine(module.Path, "wwwroot"));
-                if (!wwwrootDir.Exists)
-                {
-                    continue;
-                }
-
-                app.UseStaticFiles(new StaticFileOptions()
-                {
-                    FileProvider = new PhysicalFileProvider(wwwrootDir.FullName),
-                    RequestPath = new PathString("/" + module.SortName)
-                });
+                moduleInitializer.Configure(app, env);
             }
 
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
 }

@@ -25,13 +25,6 @@
     <Content Remove="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Data\CoreCustomModelBuilder.cs" />
-    <Compile Remove="Data\CoreSeedData.cs" />
-    <Compile Remove="Data\RepositoryWithTypedId.cs" />
-    <Compile Remove="Data\Repository.cs" />
-    <Compile Remove="Data\SimplDbContext.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Core\Modular.Core\Modular.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -44,5 +37,9 @@
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.dll" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\CoreCustomModelBuilder.cs" />
+    <Compile Remove="Data\CoreSeedData.cs" />
   </ItemGroup>
 </Project>

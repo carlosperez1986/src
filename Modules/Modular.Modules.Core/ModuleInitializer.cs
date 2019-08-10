@@ -1,10 +1,10 @@
-﻿using ExtraDepenencyTest;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Modular.Core;
 using Modular.Core.Modules;
-using Modular.Modules.ModuleC.Controllers;
+using Modular.Modules.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +21,7 @@ namespace Modular.Modules.ModuleC
 
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IAnotherTestService, AnotherTestService>();
-            serviceCollection.AddTransient<IPruebaC, Pruebas>();
+            //serviceCollection.AddScoped<SignInManager<User>, SimplSignInManager<User>>();
         }
 
         //public void Init(IServiceCollection services)

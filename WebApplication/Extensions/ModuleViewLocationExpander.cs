@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Modular.WebHost.Extensions
+namespace Modular.WebApplication.Extensions
 {
     public class ModuleViewLocationExpander : IViewLocationExpander
     {
@@ -12,47 +12,31 @@ namespace Modular.WebHost.Extensions
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
-            try
+            if (context.Values.ContainsKey(_moduleKey))
             {
-                if (context.Values.ContainsKey(_moduleKey))
+                var module = context.Values[_moduleKey];
+                if (!string.IsNullOrWhiteSpace(module))
                 {
-                    var module = context.Values[_moduleKey];
-                    if (!string.IsNullOrWhiteSpace(module))
+                    var moduleViewLocations = new string[]
                     {
-                        var moduleViewLocations = new string[]
-                        {
-                            "/Modules/Modular.Modules." + module + "/Views/{1}/{0}.cshtml",
+                    "/Modules/Modular.Modules." + module + "/Views/{1}/{0}.cshtml",
                             "/Modules/Modular.Modules." + module + "/Views/Shared/{0}.cshtml"
-                        };
+                    };
 
-                        viewLocations = moduleViewLocations.Concat(viewLocations);
-                    }
+                    viewLocations = moduleViewLocations.Concat(viewLocations);
                 }
             }
-            catch (Exception ex)
-            {
-                ex.Message.ToString();
-            }
-            
             return viewLocations;
         }
 
         public void PopulateValues(ViewLocationExpanderContext context)
         {
-            try
+            var controller = context.ActionContext.ActionDescriptor.DisplayName;
+            var moduleName = controller.Split('.')[2];
+            if (moduleName != "WebApplication")
             {
-                var controller = context.ActionContext.ActionDescriptor.DisplayName;
-                var moduleName = controller.Split('.')[2];
-                if (moduleName != "WebApplication")
-                {
-                    context.Values[_moduleKey] = moduleName;
-                }
+                context.Values[_moduleKey] = moduleName;
             }
-            catch (Exception ex)
-            {
-                ex.Message.ToString();
-            }
-        
         }
     }
 }

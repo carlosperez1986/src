@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Modular.Modules.Core.Models;
 
 namespace Modular.Modules.Core.Controllers
 {
+
+
     public class HomeController : Controller
     {
+        //private readonly UserManager<User> _userManager;
+        //private readonly SignInManager<User> _signInManager;
+
+        //public HomeController(UserManager<User> userManager,
+        //    SignInManager<User> signInManager)
+        //{
+        //    _userManager = userManager;
+        //    _signInManager = signInManager;
+
+        //}
         public IActionResult Index()
         {
             return View();

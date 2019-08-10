@@ -85,6 +85,12 @@
     <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
     <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
     <Content Remove="Modules\Modular.Modules.Core\Views\Views\_ViewStart.cshtml" />
+    <Content Remove="Modules\Modular.Modules.ModuleWebapi\module.json" />
+    <None Remove="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.deps.json" />
+    <None Remove="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.dev.json" />
+    <None Remove="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.json" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\module.json" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\Views\_ViewStart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -262,11 +268,9 @@
 
 
   <ItemGroup>
-    <Folder Include="Modules\Modular.Modules.ModuleWebapi\" />
     <Folder Include="Modules\Modular.Modules.ModuleWebapi\bin\" />
     <Folder Include="Modules\Modular.Modules.Core\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
-    <Folder Include="Modules\Modular.Modules.ModuleWebapi\bin\" />
     <Folder Include="Modules\Modular.Modules.Core\bin\" />
     <Folder Include="Modules\Modular.Modules.Core\Views\" />
     <Folder Include="Modules\Modular.Modules.Core\wwwroot\" />
@@ -310,20 +314,20 @@
     <Folder Include="Modules\Modular.Modules.Core\Views\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
-    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\Shared\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\TestC\" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.deps.json" />
-    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.dll" />
-    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.pdb" />
-    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.dev.json" />
-    <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.json" />
     <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
     <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
     <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
+    <None Include="Modules\Modular.Modules.ModuleC\module.json" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.dll" />
@@ -340,5 +344,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Autofac" Version="4.9.0" />
   </ItemGroup>
 </Project>
