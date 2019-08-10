@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SimplCommerce.Infrastructure.Data;
 using SimplCommerce.Module.Core.Models;
 
-namespace SimplCommerce.Module.Core.Data
+namespace Modular.Modules.Core.Data
 {
     public class CoreCustomModelBuilder : ICustomModelBuilder
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SimplCommerce.Infrastructure.Data
+namespace Modular.Core.Data
 {
     public interface ICustomModelBuilder
     {

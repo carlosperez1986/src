@@ -1,4 +1,4 @@
-﻿namespace SimplCommerce.Infrastructure.Models
+﻿namespace Modular.Core.Models
 {
     /// <summary>
     ///     Provides a base class for your objects which will be persisted to the database.

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SimplCommerce.Infrastructure.Helpers;
+using Modular.Core.Helpers;
 
-namespace SimplCommerce.Infrastructure.Models
+namespace Modular.Core.Models
 {
     public static class ExtendableObjectExtensions
     {

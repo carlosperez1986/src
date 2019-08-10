@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Text;
 
-namespace SimplCommerce.Infrastructure.Helpers
+namespace Modular.Core.Helpers
 {
     public static class StringHelper
     {

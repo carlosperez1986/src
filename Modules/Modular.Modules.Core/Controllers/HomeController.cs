@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Modular.Modules.Core.Models;
 
 namespace Modular.Modules.Core.Controllers
-{ 
+{
     public class HomeController : Controller
-    { 
+    {
         public IActionResult Index()
         {
             return View();

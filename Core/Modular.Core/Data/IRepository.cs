@@ -1,6 +1,6 @@
-﻿using SimplCommerce.Infrastructure.Models;
+﻿using Modular.Core.Models;
 
-namespace SimplCommerce.Infrastructure.Data
+namespace Modular.Core.Data
 {
     public interface IRepository<T> : IRepositoryWithTypedId<T, long> where T : IEntityWithTypedId<long>
     {

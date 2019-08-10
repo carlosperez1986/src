@@ -1,6 +1,7 @@
 ﻿using ExtraDepenencyTest;
 using Microsoft.Extensions.DependencyInjection;
-using Modular.Core; 
+using Modular.Core;
+using Modular.Modules.ModuleC.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Modular.Modules.ModuleC
     {
         public void Init(IServiceCollection services)
         {
-            services.AddTransient<IAnotherTestService, AnotherTestService>(); 
+            services.AddTransient<IAnotherTestService, AnotherTestService>();
+            services.AddTransient<IPruebaC, Pruebas>();
 
         }
     }

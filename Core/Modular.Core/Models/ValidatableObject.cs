@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SimplCommerce.Infrastructure.Models
+namespace Modular.Core.Models
 {
     public abstract class ValidatableObject
     {

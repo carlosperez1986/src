@@ -1,4 +1,4 @@
-﻿namespace SimplCommerce.Infrastructure.Models
+﻿namespace Modular.Core.Models
 {
     public abstract class EntityBaseWithTypedId<TId> : ValidatableObject, IEntityWithTypedId<TId>
     {

@@ -84,6 +84,7 @@
     <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
     <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
     <Content Remove="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
+    <Content Remove="Modules\Modular.Modules.Core\Views\Views\_ViewStart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -240,12 +241,21 @@
     <Content Include="Modules\Modular.Modules.Core\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="Views\_ViewImports.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Update="Modules\Modular.Modules.ModuleA\Views\TestA\Index.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Modules\Modular.Modules.ModuleC\Views\TestC\Index.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
@@ -257,13 +267,51 @@
     <Folder Include="Modules\Modular.Modules.Core\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleWebapi\bin\" />
+    <Folder Include="Modules\Modular.Modules.Core\bin\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\" />
+    <Folder Include="Modules\Modular.Modules.Core\wwwroot\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\" />
+    <Folder Include="Modules\Modular.Modules.Core\wwwroot\" />
+    <Folder Include="Modules\Modular.Modules.Core\bin\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\Views\" />
+    <Folder Include="Views\" />
+    <Folder Include="wwwroot\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
     <Folder Include="Modules\Modular.Modules.Core\bin\" />
     <Folder Include="Modules\Modular.Modules.Core\Views\" />
-    <Folder Include="Modules\Modular.Modules.Core\wwwroot\" />
-    <Folder Include="Modules\Modular.Modules.Core\Views\" />
-    <Folder Include="Modules\Modular.Modules.Core\wwwroot\" />
-    <Folder Include="Modules\Modular.Modules.Core\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
   </ItemGroup>
 
 
@@ -273,18 +321,22 @@
     <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.pdb" />
     <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.dev.json" />
     <None Include="Modules\Modular.Modules.ModuleWebapi\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleWebapi.runtimeconfig.json" />
+    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
+    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
+    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.dll" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.pdb" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.dll" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.pdb" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.dll" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.pdb" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.dll" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.pdb" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
-    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
-    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.dev.json" />
-    <None Include="Modules\Modular.Modules.Core\bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />

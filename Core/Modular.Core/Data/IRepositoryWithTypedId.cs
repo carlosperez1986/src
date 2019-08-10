@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage;
-using SimplCommerce.Infrastructure.Models;
+using Modular.Core.Models;
 
-namespace SimplCommerce.Infrastructure.Data
+namespace Modular.Core.Data
 {
     public interface IRepositoryWithTypedId<T, TId> where T : IEntityWithTypedId<TId>
     {

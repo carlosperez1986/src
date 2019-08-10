@@ -1,4 +1,4 @@
-﻿namespace SimplCommerce.Infrastructure.Models
+﻿namespace Modular.Core.Models
 {
     public interface IEntityWithTypedId<TId>
     {

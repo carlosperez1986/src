@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SimplCommerce.Infrastructure.Helpers
+namespace Modular.Core.Helpers
 {
     public static class EnumHelper
     {

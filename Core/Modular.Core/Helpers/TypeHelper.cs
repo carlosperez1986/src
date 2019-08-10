@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace SimplCommerce.Infrastructure.Helpers
+namespace Modular.Core.Helpers
 {
     /// <summary>
     /// Some simple type-checking methods used internally.

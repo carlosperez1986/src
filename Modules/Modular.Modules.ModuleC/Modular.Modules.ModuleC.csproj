@@ -6,10 +6,30 @@
 
   <ItemGroup>
     <None Remove="Views\TestC\Index.cshtml" />
+    <None Remove="Views\_ViewImports.cshtml" />
+    <None Remove="Views\_ViewStart.cshtml" />
+    <None Remove="Views\Shared\Component\_ViewImports.cshtml" />
+    <None Remove="Views\Shared\Components\Moulec\Index.cshtml" />
+    <None Remove="Views\Shared\Components\EmployeeList\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Views\TestC\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\_ViewImports.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\_ViewImports.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\EmployeeList\Default.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\EmployeeList\Default.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
@@ -22,6 +42,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Modular.Core\Modular.Core.csproj" />
+    <ProjectReference Include="..\Modular.Modules.Core\Modular.Modules.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,10 +52,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\EmployeeList\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
     <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Core.dll" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Core.pdb" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.dll" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.pdb" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.dll" />
+    <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.pdb" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.dll" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.pdb" />

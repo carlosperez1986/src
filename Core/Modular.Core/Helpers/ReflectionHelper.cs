@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace SimplCommerce.Infrastructure.Helpers
+namespace Modular.Core.Helpers
 {
     public static class ReflectionHelper
     {

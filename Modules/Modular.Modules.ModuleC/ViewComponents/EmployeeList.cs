@@ -6,18 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace Modular.Modules.ModuleC.Components
 {
     //[ViewComponent(Name = "Footer")]
-    [ViewComponent(Name = "EmployeeList1")]
-    public class MoulecViewComponent : ViewComponent
+    [ViewComponent(Name = "EmployeeList")]
+    public class EmployeeList : ViewComponent
     {
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int test)
         {
-            //ExampleModel model = new ExampleModel(2);
+            //ExampleModel model = new ExampleModel(2)
 
-            // returns a fin
+            // returns a fi
 
-            /return Task.FromResult<IViewComponentResult>(View(model));
-            return View();
+            //return Task.FromResult<IViewComponentResult>(View(model));
+            return View(test);
         }
     }
 

@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SimplCommerce.Infrastructure;
-using SimplCommerce.Infrastructure.Data;
-using SimplCommerce.Infrastructure.Models;
-using SimplCommerce.Module.Core.Models;
 
-namespace SimplCommerce.Module.Core.Data
+
+namespace Modular.Modules.Core.Data
 {
     public class SimplDbContext : IdentityDbContext<User, Role, long, IdentityUserClaim<long>, UserRole, IdentityUserLogin<long>, IdentityRoleClaim<long>, IdentityUserToken<long>>
     {

@@ -1,4 +1,4 @@
-﻿namespace SimplCommerce.Infrastructure.Models
+﻿namespace Modular.Core.Models
 {
     /// <summary>
     /// Defines a JSON formatted string property to extend an object/entity.

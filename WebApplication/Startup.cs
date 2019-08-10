@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Modular.Core;
+using Modular.Core.Data;
 using Modular.WebHost.Extensions;
 
 namespace Modular.WebApplication
@@ -58,6 +59,10 @@ namespace Modular.WebApplication
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            //services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
+
 
             services.Configure<RazorViewEngineOptions>(options =>
             {

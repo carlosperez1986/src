@@ -11,11 +11,4 @@
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="bin\Debug\netcoreapp2.2\Modular.Core.deps.json" />
-    <None Include="bin\Debug\netcoreapp2.2\Modular.Core.dll" />
-    <None Include="bin\Debug\netcoreapp2.2\Modular.Core.pdb" />
-    <None Include="bin\Debug\netcoreapp2.2\Modular.Core.runtimeconfig.dev.json" />
-    <None Include="bin\Debug\netcoreapp2.2\Modular.Core.runtimeconfig.json" />
-  </ItemGroup>
 </Project>

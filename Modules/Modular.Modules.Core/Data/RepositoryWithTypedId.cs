@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using SimplCommerce.Infrastructure.Data;
-using SimplCommerce.Infrastructure.Models;
+using Modular.Core.Data;
+using Modular.Core.Models;
 
-namespace SimplCommerce.Module.Core.Data
+namespace Modular.Modules.Core.Data
 {
     public class RepositoryWithTypedId<T, TId> : IRepositoryWithTypedId<T, TId> where T : class, IEntityWithTypedId<TId>
     {
