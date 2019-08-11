@@ -1,5 +1,6 @@
 # src
 <h3> Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD</h3>
+
 Proyecto creado para tener una plantilla en .NET CORE con una implementación modular. <br>
 
 En la carpeta Modules se encuentran los proyectos. <br>
@@ -12,10 +13,11 @@ Agregado AddCustomizedIdentity, para utilizar la iautentication de Core .NET.
 --
 Estoy tratando de resolver como llevar a cabo una arquitectura DDD.<br>
 --
-No Olvidar :
-     dotnet ef migrations add 'InitialMigration'
-     dotnet ef database update
-     
+No Olvidar :<br>
+<ul><li>
+     dotnet ef migrations add 'InitialMigration'</li>
+     <li>dotnet ef database update<li>
+</ul>  
 Fucking jon snow !!!!!!!!
  
 <hr>
