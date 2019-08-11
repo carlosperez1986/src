@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using SimplCommerce.Module.Core.Models;
+using Modular.Module.Core.Models;
+using Modular.Modules.Core.Models;
 
-namespace SimplCommerce.Module.Core.Data
+namespace Modular.Modules.Core.Data
 {
     public static class CoreSeedData
     {

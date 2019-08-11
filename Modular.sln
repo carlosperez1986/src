@@ -1,12 +1,8 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular", "Modular\Modular.csproj", "{40770B95-6060-4529-B2D9-EAB973EA4B68}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.WebApplication", "WebApplication\Modular.WebApplication.csproj", "{8DC334B5-0903-4353-843A-3B4F9A435C2C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtraDepenencyTest", "Extratest\ExtraDepenencyTest\ExtraDepenencyTest.csproj", "{1F3FA547-1650-402F-9D8B-DB1E9FE4C3BC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Core", "Core\Modular.Core\Modular.Core.csproj", "{339C79CA-9232-4935-8AC8-5A4A62E3385D}"
@@ -17,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Modules.Core", "Mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Modules.ModuleC", "Modules\Modular.Modules.ModuleC\Modular.Modules.ModuleC.csproj", "{E962B12B-FDD0-473E-B83E-EA8EB7440AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Modules.ModuleWebapi", "Modules\Modular.Modules.ModuleWebapi\Modular.Modules.ModuleWebapi.csproj", "{5AC6CA7A-6280-44BE-B5A0-E67E18824A86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{F78AFF57-DC12-4C45-B25C-E113781F1D95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{40770B95-6060-4529-B2D9-EAB973EA4B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40770B95-6060-4529-B2D9-EAB973EA4B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40770B95-6060-4529-B2D9-EAB973EA4B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40770B95-6060-4529-B2D9-EAB973EA4B68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DC334B5-0903-4353-843A-3B4F9A435C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DC334B5-0903-4353-843A-3B4F9A435C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DC334B5-0903-4353-843A-3B4F9A435C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DC334B5-0903-4353-843A-3B4F9A435C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F3FA547-1650-402F-9D8B-DB1E9FE4C3BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F3FA547-1650-402F-9D8B-DB1E9FE4C3BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F3FA547-1650-402F-9D8B-DB1E9FE4C3BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,10 +37,10 @@ Global
 		{E962B12B-FDD0-473E-B83E-EA8EB7440AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E962B12B-FDD0-473E-B83E-EA8EB7440AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E962B12B-FDD0-473E-B83E-EA8EB7440AAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AC6CA7A-6280-44BE-B5A0-E67E18824A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AC6CA7A-6280-44BE-B5A0-E67E18824A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AC6CA7A-6280-44BE-B5A0-E67E18824A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AC6CA7A-6280-44BE-B5A0-E67E18824A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F78AFF57-DC12-4C45-B25C-E113781F1D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F78AFF57-DC12-4C45-B25C-E113781F1D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F78AFF57-DC12-4C45-B25C-E113781F1D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F78AFF57-DC12-4C45-B25C-E113781F1D95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,7 +48,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C14B3FA7-7562-46D6-8C51-290277437234} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 		{E962B12B-FDD0-473E-B83E-EA8EB7440AAA} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
-		{5AC6CA7A-6280-44BE-B5A0-E67E18824A86} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73D8136C-F87F-4B3E-8474-B37FD4B377B3}

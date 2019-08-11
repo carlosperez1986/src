@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Modular.Core.Models;
 using Modular.Module.Core.Models;
 
@@ -46,6 +47,7 @@ namespace Modular.Modules.Core.Models
         public string CountryId { get; set; }
 
         public Country Country { get; set; }
+
 
         public IList<UserAddress> UserAddresses { get; set; } = new List<UserAddress>();
     }

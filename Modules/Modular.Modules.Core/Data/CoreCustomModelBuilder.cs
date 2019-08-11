@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Modular.Core.Data;
 using Modular.Core.Models;
+using Modular.Modules.Core.Models;
 
 namespace Modular.Modules.Core.Data
 {
@@ -87,17 +88,17 @@ namespace Modular.Modules.Core.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            modelBuilder.Entity<CustomerGroup>()
-                .HasIndex(d => d.Name)
-                .IsUnique();
+            //modelBuilder.Entity<CustomerGroup>()
+            //    .HasIndex(d => d.Name)
+            //    .IsUnique();
 
-            modelBuilder.Entity<CustomerGroupUser>(b =>
-            {
-                b.HasKey(ur => new { ur.UserId, ur.CustomerGroupId });
-                b.HasOne(ur => ur.User).WithMany(r => r.CustomerGroups).HasForeignKey(r => r.UserId).OnDelete(DeleteBehavior.Cascade);
-                b.HasOne(ur => ur.CustomerGroup).WithMany(u => u.Users).HasForeignKey(u => u.CustomerGroupId).OnDelete(DeleteBehavior.Cascade);
-                b.ToTable("Core_CustomerGroupUser");
-            });
+            //modelBuilder.Entity<CustomerGroupUser>(b =>
+            //{
+            //    b.HasKey(ur => new { ur.UserId, ur.CustomerGroupId });
+            //    b.HasOne(ur => ur.User).WithMany(r => r.CustomerGroups).HasForeignKey(r => r.UserId).OnDelete(DeleteBehavior.Cascade);
+            //    b.HasOne(ur => ur.CustomerGroup).WithMany(u => u.Users).HasForeignKey(u => u.CustomerGroupId).OnDelete(DeleteBehavior.Cascade);
+            //    b.ToTable("Core_CustomerGroupUser");
+            //});
 
             CoreSeedData.SeedData(modelBuilder);
         }

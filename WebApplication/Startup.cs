@@ -55,10 +55,11 @@ namespace Modular.WebApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            //services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
+
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
             services.AddCustomizedDataStore(_configuration);
+
             services.AddCustomizedIdentity(_configuration);
             services.AddHttpClient();
 

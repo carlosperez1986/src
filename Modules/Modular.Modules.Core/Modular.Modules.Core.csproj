@@ -28,6 +28,15 @@
     <ProjectReference Include="..\..\Core\Modular.Core\Modular.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Extensions\WorkContext.cs" />
+    <Compile Remove="Extensions\SimplSignInManager.cs" />
+    <Compile Remove="Extensions\Settings\SettingDefinitionProvider.cs" />
+    <Compile Remove="Extensions\UrlSlugRoute.cs" />
+    <Compile Remove="Extensions\SimplSignInManager.cs" />
+    <Compile Remove="Extensions\Settings\SettingDefinitionExtensions.cs" />
+    <Compile Remove="Extensions\Settings\SettingDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="bin\Debug\netcoreapp2.2\Modular.Core.dll" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Core.pdb" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.deps.json" />
@@ -37,9 +46,5 @@
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.runtimeconfig.json" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.dll" />
     <None Include="bin\Debug\netcoreapp2.2\Modular.Modules.Core.Views.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Data\CoreCustomModelBuilder.cs" />
-    <Compile Remove="Data\CoreSeedData.cs" />
   </ItemGroup>
 </Project>

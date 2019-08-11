@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Modular.Core;
 using Modular.Core.Data;
 using Modular.Core.Domain.Models;
+using Modular.Modules.Core.Data;
 
 namespace Modular.Modules.Core
 {

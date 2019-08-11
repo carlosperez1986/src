@@ -57,6 +57,8 @@
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Shared\Components\EmployeeList\" />
     <Folder Include="bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
