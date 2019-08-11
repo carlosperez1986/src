@@ -13,10 +13,10 @@ Agregado AddCustomizedIdentity, para utilizar la iautentication de Core .NET.
 --
 Estoy tratando de resolver como llevar a cabo una arquitectura DDD.<br>
 --
-No Olvidar :<br>
+No olvidar :<br>
 <ul><li>
      dotnet ef migrations add 'InitialMigration'</li>
-     <li>dotnet ef database update<li>
+     <li>dotnet ef database update</li>
 </ul>  
 Fucking jon snow !!!!!!!!
  
