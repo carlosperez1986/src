@@ -17,9 +17,37 @@
   <ItemGroup>
     <Content Remove="appsettings.Development.json" />
     <Content Remove="Views\Shared\_LoginPartial.cshtml" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
+    <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Modular.Core\Modular.Core.csproj" />
     <ProjectReference Include="..\Modules\Modular.Modules.Core\Modular.Modules.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\Modular.Modules.Core\bin\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
+    <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
   </ItemGroup>
 </Project>

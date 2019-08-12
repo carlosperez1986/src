@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Models\" />
+    <Folder Include="Web\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="IModuleInitializer.cs" />

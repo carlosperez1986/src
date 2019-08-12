@@ -251,10 +251,8 @@ namespace Modular.Web.Extensions
 
         public static IServiceCollection AddCustomizedDataStore(this IServiceCollection services, IConfiguration configuration)
         {
-            string cnn = "Data Source=82.223.108.84,10606;Initial Catalog=shopcartdb;User ID=sa;Password=Bp9Ea51VGI;Packet Size=4096;MultipleActiveResultSets=True;Application Name=EntityFramework";
-
             services.AddDbContextPool<SimplDbContext>(options =>
-                options.UseSqlServer(cnn,
+                options.UseSqlServer(Modular.Core.Web.Conexiondb.ConexiondbString(),
                     b => b.MigrationsAssembly("WebApplication")));
             return services;
         }

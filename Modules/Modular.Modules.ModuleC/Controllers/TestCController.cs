@@ -45,7 +45,8 @@ namespace Modular.Modules.ModuleC.Controllers
             _testModel.SaveChange();
             var xx = _testModel.Query();
 
-            ViewBag.AnotherTestData = _anotherTestService.Test() + " ";
+            ViewBag.AnotherTestData = _anotherTestService.Test() + " " + xx.Count();
+
             return View();
         }
     }
