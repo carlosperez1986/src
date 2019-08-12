@@ -1,4 +1,5 @@
-# src
+# Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD #
+
 <h3> Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD</h3>
 
 Proyecto creado para tener una plantilla en .NET CORE con una implementación modular. <br>
