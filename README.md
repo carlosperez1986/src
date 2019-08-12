@@ -21,6 +21,11 @@ No olvidar :<br/>
      dotnet ef migrations add 'InitialMigration'</li>
      <li>dotnet ef database update</li>
 </ul>  
+<br/>
+He conectado con docker y kinematic a una database en sql server, para gestionar la base de datos recomiendo la herramienta <strong>Azure Data Studio</strong>
+
+
+
 Fucking jon snow !!!!!!!!
  
 <hr>
