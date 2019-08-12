@@ -23,6 +23,12 @@
     <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />
     <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.dev.json" />
     <Content Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.runtimeconfig.json" />
+    <Content Remove="wwwroot\images\DSC_8041.jpg" />
+    <Content Remove="wwwroot\images\detinos_merida.jpg" />
+    <Content Remove="wwwroot\images\DSC_8246 %281%29.jpg" />
+    <Content Remove="Modules\Modular.Modules.Core\Views\Home\Index.cshtml" />
+    <Content Remove="Modules\Modular.Modules.Core\Views\Shared\_LayoutRespaldo.cshtml" />
+    <Content Remove="Modules\Modular.Modules.Core\Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Modular.Core\Modular.Core.csproj" />
@@ -30,7 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Modular.Modules.Core\bin\" />
-    <Folder Include="Modules\Modular.Modules.Core\Views\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\Views\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\netcoreapp2.2\" />
@@ -44,6 +49,8 @@
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
     <Folder Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\" />
+    <Folder Include="Modules\Modular.Modules.Core\Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.deps.json" />

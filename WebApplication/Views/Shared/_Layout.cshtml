@@ -1,77 +1,653 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    @*Dictionary<string, object> _toursIndex = await Capas.FuncionesSQL.GetData("select top(3) i.intereses_id,i.intereses_nombre, i.intereses_imagen, i.intereses_precio, i.intereses_moneda, i.intereses_tipo, r.regiones_id, r.regiones_nombre from intereses as i left join regiones as r on r.regiones_id = i.regiones_id where i.[index] = 2", null);*@
+
+    @*ViewData["_toursIndex"] = _toursIndex;*@
+    string titulo = string.Empty;
+
+    if (ViewBag.titulo != null)
+    {
+        titulo = ViewBag.titulo.Trim();
+    }
+    else
+    {
+        titulo = "Agencia de viajes en margarita, paquetes turisticos en isla margarita, fullday isla margarita, isla de margarita, venezuela";
+    }
+
+
+    string cart_name_cookie = $"{ Context.Request.Host.Host}_cart";
+
+    //verifico si ya el item existe en la lista que guarda el carrito//
+
+    try
+    {
+
+        ViewData["cart_name_cookie"] = Context.Response.HttpContext.Request.Cookies[cart_name_cookie];
+    }
+    catch (Exception ex)
+    {
+        ViewData["cart_name_cookie"] = "";
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Modular.Modules.Core</title>
+    <title>
+        @titulo
+    </title>
+    <meta id="metatitulo" name="title" content="@titulo" />
+    <meta id="metaDescription" name="description" content="Agencia de Viajes. Ofrecemos paquetes turísticos a medida, boletos aereos, reservaciones de hoteles, vehiculos, tours y full day. " />
+    <meta id="metaKeywords" name="keywords" content="Agencia de viajes, paquetes turisticos, mayorista de Turismo de Venezuela, isla de margarita, venezuela" />
+    <meta name="msvalidate.01" content="47BD9EA074EC0CA7A33967E2DB9CBA98" />
+    <meta name="alexaVerifyID" content="pcCkkNaOG7m_FaH1Ya1o4OG5_LQ" />
+    <meta name="copyright" content="Copyright - All Rights Reserved, 2013 Devi Tours" />
+    <meta name="author" content="Carlos E. Pérez" />
+    <meta name="zipcode" content="6301" />
+    <meta name="city" content="Porlamar" />
+    <meta name="state" content="Isla de Margarita" />
+    <meta name="country" content="Venezuela" />
+    <meta name="robots" content="All" />
+    <meta name="googlebot" content="All" />
+    <meta name="google-site-verification" content="leRp--ojdOLnjsGh7-zgRlalX-BFMfAUZuzeocGUuKI" />
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,700&amp;subset=cyrillic,hebrew,latin-ext" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/css/mmenu.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/css/font-awesome-all.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/css/magnific.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/css/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/css/nouislider.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/templateinicio/style.css" />
+    <link rel="stylesheet" href="~/lib/template/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css"
+          asp-fallback-href="~/lib/template/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    @*<link rel="stylesheet" type="text/css" href="~/css/site.css" />*@
+
+    @*<link rel="shortcut icon" href="#">
+        <link rel="apple-touch-icon" href="#">
+        <link rel="apple-touch-icon" sizes="72x72" href="#">
+        <link rel="apple-touch-icon" sizes="114x114" href="#">*@
+
+
+
+    <style>
+    .page-hero::before {
+        background: rgba(0, 0, 0, 0.5)</style>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />*@
+
+
     </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-              crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
-    </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
+    @*<environment exclude="Development">
+            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>*@
+
+    @*<script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+        <script>
+                var url = '@ViewBag.url';
+        </script>*@
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Modular.Modules.Core</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        @*  <partial name="_CookieConsentPartial" />*@
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-
-
-            &copy; 2019 - Modular.Modules.Core - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
+    @*<partial name="_CookieConsentPartial" />*@
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"
                 crossorigin="anonymous"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
                 crossorigin="anonymous"
-                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"></script>
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*<script src="~/js/signalr/Chat.js"></script>*@
+
+    <div id="page">
+
+        <!-- Add .header-fullwidth for fullwidth header (1600px max width) -->
+        <header class="header">
+            <div class="head-intro">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="head-intro-inner">
+                                <div class="head-intro-info">
+
+
+
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                <strong>RIF:</strong>&nbsp; J-404285091&nbsp;
+                                            </td>
+                                            <td>
+                                                <strong>RTN:</strong>&nbsp; 14040&nbsp;
+                                            </td>
+                                            <td>
+                                                <strong>VT:</strong>&nbsp; 3198
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    @*<span><strong>RIF:</strong>&nbsp;   J-404285091 <strong> &nbsp; &nbsp;  &nbsp; RTN:</strong> &nbsp;  14040  &nbsp; <strong> VT: </strong> &nbsp;  3198</span>
+                                        <span>
+                                            <a href="#"><span class="__cf_email__" data-cfemail="432e222a2f03263b222e332f266d202c2e">grupohbtravel@gmail.com</span></a>
+                                        </span>*@
+                                </div>
+
+                                <div class="head-intro-addons">
+
+                                    @*<partial name="_LoginPartial" />*@
+
+                                    @*@if (Data.UserData.isConnected == true)
+                                        {
+                                            <table class="table">
+                                                <tr>
+                                                    <td> Hola, @Data.UserData.usuarios_nombre | </td>
+                                                    <td class="">
+                                                        <a style="" asp-controller="Account" asp-action="Index" asp-area="Account" class=""><i class="mdi mdi-account-outline"></i>Ir a mi cuenta</a> |
+                                                    </td>
+                                                    <td>
+                                                        <a style="" asp-controller="Account" asp-action="CloseUserSession" asp-area="Account" class=""><i class="fas fa-times"></i>Cerrar</a>
+                                                </tr>
+                                            </table>
+                                        }
+                                        else
+                                        {
+                                            <table class="table login">
+                                                <tr>
+
+                                                    <td class="" style="        border-right: 1px solid #f5f5f5">
+                                                        <a asp-controller="Account" asp-action="Login" asp-area="Account" class=""><i class="mdi mdi-account-outline"></i>Acceder</a>
+                                                    </td>
+                                                    <td>
+                                                        <a style="" asp-controller="Account" asp-action="Login" asp-area="Account" class=""><i class="mdi mdi-message-text-outline"></i>Registrarse</a>
+                                                </tr>
+                                            </table>
+                                            <ul class="list-social-icons">
+                                                <!-- <li>
+                                                    <a class="social-icon" href="#">
+                                                        <i class="fas fa-rss"></i>
+                                                    </a>
+                                                </li> -->
+                                                <li>
+                                                    <a class="social-icon" href="#">
+                                                        <i class="fab fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="social-icon" href="#">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="social-icon" href="#">
+                                                        <i class="fab fa-instagram"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a class="social-icon" asp-controller="Account" asp-action="Login">
+                                                        <i class="fab fa-user"></i> Acceder
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a class="social-icon" asp-controller="Account" asp-action="Login">
+                                                        <i class="fab fa-envelope-square"></i> Registrarse
+                                                    </a>
+                                                </li>
+
+
+
+                                                <!-- <li>
+                                                    <a class="social-icon" href="#">
+                                                        <i class="fab fa-vimeo"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="social-icon" href="#">
+                                                        <i class="fab fa-medium"></i>
+                                                    </a>
+                                                </li> -->
+                                            </ul>
+                                        }*@
+
+                                    <div class="head-intro-addon" style=" padding: 0">
+                                        <div class="head-search" style=" padding: 0;
+        width: 85px;">
+                                            @*@await Html.PartialAsync("~/Areas/Home/Views/ShopCart/_Shopcart.cshtml", ViewData["cart_name_cookie"])*@
+
+
+                                            @*<form action="https://www.cssigniter.com/" class="head-search-form">
+                                                    <label for="head-search-input" class="sr-only">Search for:</label>
+                                                    <input type="text" id="head-search-input" class="head-search-input" placeholder="Type and hit enter to search">
+                                                </form>
+                                                <a href="#" class="head-search-trigger">
+                                                    <i class="fas fa-search"></i>
+                                                </a>*@
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="head-mast head-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-6 col-8">
+                            <h1 class="site-logo">
+                                <a href="/">
+                                    <img src="/images/logo_blanco.png" alt="agencia de viajes en la isla de margarita" style="        width: 80%;" />
+                                </a>
+                            </h1>
+                            <!-- <p class="site-tagline">Theme tagline</p> -->
+                        </div>
+
+                        <div class="col-lg-9 col-md-6 col-4">
+                            <nav class="nav">
+                                <ul class="navigation-main navigation-main-right">
+                                    <li class="menu-item-home menu-item-has-children">
+                                        <a href="/">Inicio</a>
+                                        <!-- <ul class="sub-menu">
+                                            <li>
+                                                <a href="index.html">Promociones</a>
+                                            </li>
+                                            <li>
+                                                <a href="index-video.html">Paquetes</a>
+                                            </li>
+                                            <li>
+                                                <a href="index-slideshow.html">Home Slideshow</a>
+                                            </li>
+                                        </ul> -->
+                                    </li>
+                                    <li class="menu-item-home menu-item-has-children">
+                                        <a asp-controller="home" asp-area="home" asp-action="promociones">Promociones</a>
+                                        <ul class="sub-menu">
+                                            <li>
+                                                <a asp-controller="home" asp-area="home" asp-action="promociones" asp-route-tipo="Nacionales">Nacionales</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="home" asp-area="home" asp-action="promociones" asp-route-tipo="Internacionales">Internacionales</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/Productos">Productos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Destinos">Destinos</a>
+                                        <!-- <a href="search-grid.html">Templates</a> -->
+                                        <!-- <ul class="sub-menu">
+                                            <li>
+                                                <a href="search-grid.html">Search Grid</a>
+                                            </li>
+                                            <li>
+                                                <a href="search-grid-alt.html">Search Grid Alt</a>
+                                            </li>
+                                            <li>
+                                                <a href="search-list.html">Search List</a>
+                                            </li>
+                                            <li>
+                                                <a href="single-destination.html">Destination</a>
+                                            </li>
+                                            <li>
+                                                <a href="single-destination-sidebar.html">Destination Sidebar</a>
+                                            </li>
+                                            <li>
+                                                <a href="single-destination-simple.html">Destination Simple</a>
+                                            </li>
+                                            <li>
+                                                <a href="single-tour.html">Tour</a>
+                                            </li>
+                                            <li>
+                                                <a href="single-tour-no-sidebar.html">Tour No Sidebar</a>
+                                            </li>
+                                        </ul> -->
+                                    </li>
+                                    <li class="">
+                                        <!-- <a href="blog-list-sidebar.html">Servicios</a> -->
+                                        <a href="/servicios">Servicios</a>
+                                        @*<ul class="sub-menu">*@
+                                        <!-- <li>
+                                            <a href="blog-list-sidebar.html">Blog List w/ Sidebar</a>
+                                        </li> -->
+                                        <!-- <li>
+                                            <a href="blog-3-columns.html">Blog 3 Columns</a>
+                                        </li>
+                                        <li>
+                                            <a href="blog-4-columns.html">Blog 4 Columns</a>
+                                        </li>
+                                        <li>
+                                            <a href="blog-columns-sidebar.html">Blog Columns w/ Sidebar</a>
+                                        </li>
+                                        <li>
+                                            <a href="single.html">Single Article</a>
+                                        </li>
+                                        <li>
+                                            <a href="single-left-sidebar.html">Single Article Left Sidebar</a>
+                                        </li>
+                                        <li>
+                                            <a href="single-no-sidebar.html">Single Article No Sidebar</a>
+                                        </li> -->
+                                        @*</ul>*@
+                                    </li>
+                                    <!-- <li class="current-menu-ancestor menu-item-has-children">
+                                        <a href="page.html">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li>
+                                                <a href="page.html">Page Default</a>
+                                            </li>
+                                            <li>
+                                                <a href="page-fullwidth.html">Page Fullwidth</a>
+                                            </li>
+                                            <li>
+                                                <a href="page-narrow.html">Page Narrow</a>
+                                            </li>
+                                            <li>
+                                                <a href="page-sidebar-left.html">Page Left Sidebar</a>
+                                            </li>
+                                            <li>
+                                                <a href="page-video-hero.html">Page Video Hero</a>
+                                            </li>
+                                            <li class="current-menu-parent menu-item-has-children">
+                                                <a href="#">Submenu Item II</a>
+                                                <ul class="sub-menu">
+                                                    <li class="current-menu-item">
+                                                        <a href="#">Third Level Menu Item</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Menu Item</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li> -->
+                                    <li class="nav-button">
+                                        <a asp-controller="home" asp-action="contacto" asp-area="home">Contacto</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <a href="#mobilemenu" class="mobile-nav-trigger">
+                                <i class="fas fa-bars"></i> Menu
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="mobilemenu">
+            <ul></ul>
+        </div>
+
+        @RenderBody()
+
+        <footer class="footer" style="        background-image: url(/lib/templateinicio/images/footer_bg.jpg);
+        background-position: bottom center;
+        background-repeat: no-repeat;">
+            <div class="footer-widgets">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <aside class="widget widget_ci-schedule">
+                                <h3 class="widget-title">24 horas al días 365 días al año</h3>
+
+                                <p class="ci-schedule-widget-intro">
+                                    Agencia de viajes en la Isla de Margarita.
+                                    <br />
+                                    <strong> GRUPO HB TRAVEL AND SERVICES, C.A.</strong>
+                                    <br />
+                                    RIF: J-404285091, RTN: 14040, VT: 3198
+                                    <br />
+
+                                    Calle Miragua, locales 1 y 2 frente al Hotel H2Otel.
+                                    <br /> Código postal 6324. Playa el Agua, Municipio Antolìn del Campo del estado Nueva Esparta.
+                                    <br />
+                                    <strong> Isla de Margarita, Nueva Esparta, Venezuela</strong>.
+
+                                </p>
+
+                                @*<table class="ci-schedule-widget-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>Lun - Tue</th>
+                                                <td>10:00am - 7:00pm</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Wed - Fri</th>
+                                                <td>11:00am - 9:00pm</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Sat - Sun</th>
+                                                <td>Closed</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>*@
+                            </aside>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <aside class="widget">
+                                <h3 class="widget-title">Destinos</h3>
+
+                                <div class="widget-list-wrap">
+                                    <ul>
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Destinos">Isla de Margarita</a>
+                                            <div class="ci-count">15</div>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Destinos">Isla de Coche</a>
+                                            <div class="ci-count">7</div>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Destinos">Los Roques</a>
+                                            <div class="ci-count">12</div>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Destinos">Mérida</a>
+                                            <div class="ci-count">4</div>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Destinos">Canaima</a>
+                                            <div class="ci-count">2</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <aside class="widget">
+                                <h3 class="widget-title">Tours Populares</h3>
+
+                                @*   @await Html.PartialAsync("~/Views/Home/_ToursIndex.cshtml", _toursIndex)*@
+
+                            </aside>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <aside class="widget widget_ci-contact">
+                                <h3 class="widget-title">Contáctanos</h3>
+
+                                <ul class="ci-contact-widget-items">
+                                    <li class="ci-contact-widget-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Isla de Margarita, Venezuela
+                                    </li>
+
+                                    <li class="ci-contact-widget-item">
+                                        <i class="fas fa-phone-square"></i> + 58 0295-2490002
+                                    </li>
+                                    <li class="ci-contact-widget-item">
+                                        <i class="fas fa-phone-square"></i> + 58 0416 - 6958404 / 0424 - 8396170
+                                    </li>
+                                    <li class="ci-contact-widget-item">
+                                        <i class="fas fa-envelope-square"></i>
+                                        <a class="" href="mailto:grupohbtravel@@gmail.com">grupohbtravel@@gmail.com</a>
+                                    </li>
+                                    <li class="ci-contact-widget-item">
+                                        <i class="fab fa-facebook"></i>
+                                        <a href="https://www.facebook.com/grupohbtravel/" target="_blank">@@grupohbtravel</a>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="footer-info-inner on-background">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-12">
+                                        <p class="footer-copy text-lg-left text-center">Grupo HB travel &ndash; 2018</p>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12">
+                                        <div class="footer-info-addons text-lg-right text-center">
+                                            <ul class="list-social-icons">
+                                                <li>
+                                                    <a class="social-icon" href="https://www.instagram.com/grupohbtravel/" target="_blank">
+                                                        <i class="fas fa-instagram"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="social-icon" href="https://www.facebook.com/grupohbtravel/" target="_blank">
+                                                        <i class="fab fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="social-icon" href="#">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="~/lib/templateinicio/js/jquery.mmenu.min.all.js"></script>
+    <script src="~/lib/templateinicio/js/jquery.fitvids.js"></script>
+    <script src="~/lib/templateinicio/js/jquery.magnific-popup.js"></script>
+    <script src="~/lib/templateinicio/js/slick.js"></script>
+    <script src="~/lib/templateinicio/js/jquery.sticky-kit.min.js"></script>
+    <script src="~/lib/templateinicio/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/lib/templateinicio/js/anim-on-scroll.js"></script>
+    <script src="~/lib/templateinicio/js/chosen.jquery.js"></script>
+    <script src="~/lib/templateinicio/js/nouislider.js"></script>
+    <script src="~/lib/templateinicio/js/scripts.js"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+
 
     @RenderSection("Scripts", required: false)
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.0/socket.io.js"></script>
+
+    <script>
+      $(function () {
+      //  var socket = io();
+        var options = {
+          rememberUpgrade:true,
+          secure:false,
+          rejectUnauthorized: false
+        }
+
+        var socket = io.connect('http://hechoenmargarita.com:4500/', options);
+        //var socket = io.connect('http://localhost:4500/', options);
+
+
+        var user_id = null;
+        @*$('form').submit(function(){
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });*@
+
+        socket.on('chat message', function(msg){
+          $('#messages').append($('<li>').text(msg));
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        var url_connected = '@Url.Action("UserConnected", "Home")';
+
+        socket.on('connected', function(msg)
+        {
+            console.log("connect:" + msg)
+           // $.get(url_connected,{user:msg, tipo:''},function(data){console.log(data);})
+
+            user_id=msg;
+        });
+
+         socket.on('list_users', function(msg)
+        {
+            console.log("list_users:" + msg)
+
+        });
+
+        socket.once('disconnect', function (m) {
+
+             console.log(m);
+            console.log('sessionID ' + m + ' disconnected');
+           // $.get(url_connected,{user:user_id, tipo:'disconnect'},function(data){console.log(data);})
+        });
+
+        socket.on('disconnect_dos', function (m) {
+            console.log(m);
+            //console.log('sessionID ' + m + ' disconnected');
+        });
+
+        socket.on('disconnect_uno', function (m) {
+            console.log(m);
+            //console.log('sessionID ' + m + ' disconnected');
+        });
+
+        @*socket.on('disconnect', function(msg)
+        {
+            $.get(url_connected,{user:msg, tipo:'disconnect'},function(data){console.log(data);})
+            debugger;
+            console.log("disconnect:"+msg)  ;
+
+            $.get(url_connected,{user:msg, tipo:'disconnect'},function(data){
+                console.log(data);
+
+            })
+
+        });*@
+
+      });
+    </script>
 </body>
 </html>

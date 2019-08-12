@@ -1,56 +1,274 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.align-items-center {
+    -webkit-box-align: center !important;
+    -webkit-align-items: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+.justify-content-center {
+    -webkit-box-pack: center !important;
+    -webkit-justify-content: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+
+.auth form .form-group label {
+    font-size: .8125rem;
+}
+
+.auth form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    line-height: 1;
+    vertical-align: top;
+    margin-bottom: .5rem;
+}
+
+.auth .auth-form-transparent {
+    background: transparent;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.p-3 {
+    padding: 1rem !important;
+}
+
+.pt-3, .py-3 {
+    padding-top: 1rem !important;
+}
+
+.mb-2, .my-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+label, .label {
+    display: block;
+    margin: 0 0 10px;
+    font-weight: 500;
+    color: #2d2d2d;
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: -0.025em;
+}
+
+.input-group, .asColorPicker-wrap {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group-append, .input-group-prepend {
+    color: #c9c8c8;
+    width: auto;
+    border: none;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+.input-group-prepend {
+    margin-right: -1px;
+}
+
+.input-group-prepend, .input-group-append {
+    display: flex;
+}
+
+.input-group-append, .input-group-prepend {
+    height: 45px !important;
+}
+
+.auth .auth-form-transparent .form-control, .auth .auth-form-transparent .asColorPicker-input, .auth .auth-form-transparent .dataTables_wrapper select, .dataTables_wrapper .auth .auth-form-transparent select, .auth .auth-form-transparent .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row .auth .auth-form-transparent input[type=text], .auth .auth-form-transparent .jsgrid .jsgrid-table .jsgrid-filter-row select, .jsgrid .jsgrid-table .jsgrid-filter-row .auth .auth-form-transparent select, .auth .auth-form-transparent .jsgrid .jsgrid-table .jsgrid-filter-row input[type=number], .jsgrid .jsgrid-table .jsgrid-filter-row .auth .auth-form-transparent input[type=number], .auth .auth-form-transparent .select2-container--default .select2-selection--single, .select2-container--default .auth .auth-form-transparent .select2-selection--single, .auth .auth-form-transparent .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth .auth-form-transparent .select2-search__field, .auth .auth-form-transparent .typeahead, .auth .auth-form-transparent .tt-query, .auth .auth-form-transparent .tt-hint, .auth .auth-form-transparent .input-group-text {
+    border-color: #d9dbdc;
+}
+
+.input-group > .input-group-prepend > .btn, .asColorPicker-wrap > .input-group-prepend > .btn, .fc .input-group > .input-group-prepend > button, .fc .asColorPicker-wrap > .input-group-prepend > button, .ajax-upload-dragdrop .input-group > .input-group-prepend > .ajax-file-upload, .ajax-upload-dragdrop .asColorPicker-wrap > .input-group-prepend > .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .input-group > .input-group-prepend > .swal2-styled, .swal2-modal .swal2-buttonswrapper .asColorPicker-wrap > .input-group-prepend > .swal2-styled, .wizard > .actions .input-group > .input-group-prepend > a, .wizard > .actions .asColorPicker-wrap > .input-group-prepend > a, .input-group > .input-group-prepend > .input-group-text, .asColorPicker-wrap > .input-group-prepend > .input-group-text, .input-group > .input-group-append:not(:last-child) > .btn, .asColorPicker-wrap > .input-group-append:not(:last-child) > .btn, .fc .input-group > .input-group-append:not(:last-child) > button, .fc .asColorPicker-wrap > .input-group-append:not(:last-child) > button, .ajax-upload-dragdrop .input-group > .input-group-append:not(:last-child) > .ajax-file-upload, .ajax-upload-dragdrop .asColorPicker-wrap > .input-group-append:not(:last-child) > .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .input-group > .input-group-append:not(:last-child) > .swal2-styled, .swal2-modal .swal2-buttonswrapper .asColorPicker-wrap > .input-group-append:not(:last-child) > .swal2-styled, .wizard > .actions .input-group > .input-group-append:not(:last-child) > a, .wizard > .actions .asColorPicker-wrap > .input-group-append:not(:last-child) > a, .input-group > .input-group-append:not(:last-child) > .input-group-text, .asColorPicker-wrap > .input-group-append:not(:last-child) > .input-group-text, .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .asColorPicker-wrap > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .fc .input-group > .input-group-append:last-child > button:not(:last-child):not(.dropdown-toggle), .fc .asColorPicker-wrap > .input-group-append:last-child > button:not(:last-child):not(.dropdown-toggle), .ajax-upload-dragdrop .input-group > .input-group-append:last-child > .ajax-file-upload:not(:last-child):not(.dropdown-toggle), .ajax-upload-dragdrop .asColorPicker-wrap > .input-group-append:last-child > .ajax-file-upload:not(:last-child):not(.dropdown-toggle), .swal2-modal .swal2-buttonswrapper .input-group > .input-group-append:last-child > .swal2-styled:not(:last-child):not(.dropdown-toggle), .swal2-modal .swal2-buttonswrapper .asColorPicker-wrap > .input-group-append:last-child > .swal2-styled:not(:last-child):not(.dropdown-toggle), .wizard > .actions .input-group > .input-group-append:last-child > a:not(:last-child):not(.dropdown-toggle), .wizard > .actions .asColorPicker-wrap > .input-group-append:last-child > a:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child), .asColorPicker-wrap > .input-group-append:last-child > .input-group-text:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-append .input-group-text, .input-group-prepend .input-group-text {
+    border-color: #e9e8ef;
+    padding: 0.875rem 0.75rem;
+    color: #c9c8c8;
+}
+
+.border-right-0 {
+    border-right: 0 !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.375rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+}
+
+
+.auth form .form-group .form-control, .auth form .form-group .asColorPicker-input, .auth form .form-group .dataTables_wrapper select, .dataTables_wrapper .auth form .form-group select, .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group input[type=text], .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row select, .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group select, .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row input[type=number], .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group input[type=number], .auth form .form-group .select2-container--default .select2-selection--single, .select2-container--default .auth form .form-group .select2-selection--single, .auth form .form-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth form .form-group .select2-search__field, .auth form .form-group .typeahead, .auth form .form-group .tt-query, .auth form .form-group .tt-hint {
+    background: transparent;
+    border-radius: 0;
+    font-size: .9375rem;
+}
+
+.mdi:before, .mdi-set {
+    display: inline-block;
+    font: normal normal normal 24px/1 "Material Design Icons";
+    font-size: inherit;
+    text-rendering: auto;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+
+
+.btn:not(:disabled):not(.disabled), .fc button:not(:disabled):not(.disabled), .ajax-upload-dragdrop .ajax-file-upload:not(:disabled):not(.disabled), .swal2-modal .swal2-buttonswrapper .swal2-styled:not(:disabled):not(.disabled), .wizard > .actions a:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.auth form .auth-form-btn {
+    height: 50px;
+    line-height: 1.5;
+}
+
+.btn.btn-lg, .btn-group-lg > .btn, .fc .btn-group-lg > button, .ajax-upload-dragdrop .btn-group-lg > .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-group-lg > .swal2-styled, .wizard > .actions .btn-group-lg > a, .fc button.btn-lg, .ajax-upload-dragdrop .btn-lg.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-lg.swal2-styled, .wizard > .actions a.btn-lg {
+    font-size: 0.875rem;
+}
+
+.btn, .fc button, .ajax-upload-dragdrop .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel, .wizard > .actions a, .btn-group.open .dropdown-toggle, .fc .open.fc-button-group .dropdown-toggle, .btn:active, .fc button:active, .ajax-upload-dragdrop .ajax-file-upload:active, .swal2-modal .swal2-buttonswrapper .swal2-styled:active, .wizard > .actions a:active, .btn:focus, .fc button:focus, .ajax-upload-dragdrop .ajax-file-upload:focus, .swal2-modal .swal2-buttonswrapper .swal2-styled:focus, .wizard > .actions a:focus, .btn:hover, .fc button:hover, .ajax-upload-dragdrop .ajax-file-upload:hover, .swal2-modal .swal2-buttonswrapper .swal2-styled:hover, .wizard > .actions a:hover, .btn:visited, .fc button:visited, .ajax-upload-dragdrop .ajax-file-upload:visited, .swal2-modal .swal2-buttonswrapper .swal2-styled:visited, .wizard > .actions a:visited, a, a:active, a:checked, a:focus, a:hover, a:visited, body, button, button:active, button:hover, button:visited, div, input, input:active, input:focus, input:hover, input:visited, select, select:active, select:focus, select:visited, textarea, textarea:active, textarea:focus, textarea:hover, textarea:visited {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+    .btn-primary, .wizard > .actions a, .btn-primary:hover, .wizard > .actions a:hover {
+        box-shadow: 0 2px 2px 0 rgba(94, 37, 114, 0.14), 0 3px 1px -2px rgba(94, 37, 114, 0.2), 0 1px 5px 0 rgba(94, 37, 114, 0.12);
+    }
+
+    .btn, .fc button, .ajax-upload-dragdrop .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel, .wizard > .actions a {
+        font-size: 0.875rem;
+        line-height: 1;
+        font-weight: 400;
+    }
+
+.font-weight-medium {
+    font-weight: 500;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-lg, .btn-group-lg > .btn, .fc .btn-group-lg > button, .ajax-upload-dragdrop .btn-group-lg > .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-group-lg > .swal2-styled, .wizard > .actions .btn-group-lg > a {
+    padding: 1rem 3rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.1875rem;
+}
+
+.btn-primary, .wizard > .actions a {
+    color: #fff;
+    background-color: #5e2572;
+    border-color: #5e2572;
+}
+
+.btn, .fc button, .ajax-upload-dragdrop .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel, .wizard > .actions a {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 0.1875rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-block {
+    min-width: 100%;
+    display: block;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn-lg {
+    padding: 21px 44px;
+    font-size: 18px;
+    border-radius: 30px;
 }
