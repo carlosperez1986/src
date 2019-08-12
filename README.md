@@ -1,6 +1,6 @@
 # Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD #
 
- Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD 
+Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD 
 
 Proyecto creado para tener una plantilla en .NET CORE con una implementación modular. <br/>
 
@@ -25,6 +25,9 @@ No olvidar :<br/>
 He conectado con docker y kinematic a una database en sql server, para gestionar la base de datos recomiendo la herramienta <strong>Azure Data Studio</strong>
 
 
+Previosly on Walking dead: <br>
+ dotnet new webapp -o Modular.Modules.Core --auth individual
+------------------------------------------------------------
 
 Fucking jon snow !!!!!!!!
  
