@@ -9,7 +9,7 @@ En el Startup de este proyecto(Webapplication), se encuenta la lógica para inye
 <br>
 Introducida la capa de datos, agregado irepository<model> para mapear las identidades utilizadas.
 Agregado AddCustomizedIdentity, para utilizar la iautentication de Core .NET.
- 
+Agregado ViewComponent Modular: return View(ViewComponentExtensions.GetViewPath(this), Model);
 --
 Estoy tratando de resolver como llevar a cabo una arquitectura DDD.<br>
 --
