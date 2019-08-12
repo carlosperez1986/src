@@ -1,20 +1,22 @@
 # Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD #
 
-<h3> Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD</h3>
+ Modular Proyect .net core 2.2 - SOLID, Arquitecture DDD 
 
-Proyecto creado para tener una plantilla en .NET CORE con una implementación modular. <br>
+Proyecto creado para tener una plantilla en .NET CORE con una implementación modular. <br/>
 
-En la carpeta Modules se encuentran los proyectos. <br>
-Para que los módulos sean inyectados debemos compilarlos y colocar la carpeta bin, views dentro de la carpeta Modules en el proyecto Webapplication. <br>
-En el Startup de este proyecto(Webapplication), se encuenta la lógica para inyectarlos.
+En la carpeta Modules se encuentran los proyectos. <br/>
+Para que los módulos sean inyectados debemos compilarlos y colocar la carpeta bin, views dentro de la carpeta Modules en el proyecto Webapplication. <br/>
+
+<p>En el Startup de este proyecto(Webapplication), se encuenta la lógica para inyectarlos.
 <br>
 Introducida la capa de datos, agregado irepository<model> para mapear las identidades utilizadas.
 Agregado AddCustomizedIdentity, para utilizar la iautentication de Core .NET.
-Agregado ViewComponent Modular: return View(ViewComponentExtensions.GetViewPath(this), Model);
+Agregado ViewComponent Modular: 'return View(ViewComponentExtensions.GetViewPath(this), Model)'
+</p>
 --
-Estoy tratando de resolver como llevar a cabo una arquitectura DDD.<br>
+Estoy tratando de resolver como llevar a cabo una arquitectura DDD.<br/>
 --
-No olvidar :<br>
+No olvidar :<br/>
 <ul><li>
      dotnet ef migrations add 'InitialMigration'</li>
      <li>dotnet ef database update</li>
