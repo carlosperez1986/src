@@ -27,6 +27,17 @@ He conectado con docker y kinematic a una database en sql server, para gestionar
 
 Previosly on Walking dead: <br>
  dotnet new webapp -o Modular.Modules.Core --auth individual
+ 
+ --Puto EF 
+     USE master;
+     GO
+     ALTER DATABASE shopcartdb 
+     SET SINGLE_USER 
+     WITH ROLLBACK IMMEDIATE;
+     GO
+     DROP DATABASE shopcartdb;
+
+     create database shopcartdb;
 ------------------------------------------------------------
 
 Fucking jon snow !!!!!!!!
