@@ -26,9 +26,9 @@ using Microsoft.IdentityModel.Tokens;
 using Modular.Core;
 using Modular.Core.Data;
 using Modular.Core.Modules;
-using Modular.Module.Core.Models;
-using Modular.Modules.Core;
+using Modular.Module.Core.Extensions;
 using Modular.Modules.Core.Data;
+using Modular.Modules.Core.Extensions;
 using Modular.Modules.Core.Models;
 using Newtonsoft.Json;
 
@@ -145,7 +145,7 @@ namespace Modular.Web.Extensions
                 }
                 catch (Exception ex)
                 {
-
+                    ex.Message.ToString();
                 }
 
             });
@@ -153,21 +153,29 @@ namespace Modular.Web.Extensions
 
         private static void AddApplicationPart(IMvcBuilder mvcBuilder, Assembly assembly)
         {
-            var partFactory = ApplicationPartFactory.GetApplicationPartFactory(assembly);
-            foreach (var part in partFactory.GetApplicationParts(assembly))
+            try
             {
-                mvcBuilder.PartManager.ApplicationParts.Add(part);
-            }
-
-            var relatedAssemblies = RelatedAssemblyAttribute.GetRelatedAssemblies(assembly, throwOnError: false);
-            foreach (var relatedAssembly in relatedAssemblies)
-            {
-                partFactory = ApplicationPartFactory.GetApplicationPartFactory(relatedAssembly);
-                foreach (var part in partFactory.GetApplicationParts(relatedAssembly))
+                var partFactory = ApplicationPartFactory.GetApplicationPartFactory(assembly);
+                foreach (var part in partFactory.GetApplicationParts(assembly))
                 {
                     mvcBuilder.PartManager.ApplicationParts.Add(part);
                 }
+
+                var relatedAssemblies = RelatedAssemblyAttribute.GetRelatedAssemblies(assembly, throwOnError: false);
+                foreach (var relatedAssembly in relatedAssemblies)
+                {
+                    partFactory = ApplicationPartFactory.GetApplicationPartFactory(relatedAssembly);
+                    foreach (var part in partFactory.GetApplicationParts(relatedAssembly))
+                    {
+                        mvcBuilder.PartManager.ApplicationParts.Add(part);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
+
         }
 
         public static IServiceCollection AddCustomizedIdentity(this IServiceCollection services, IConfiguration configuration)
@@ -182,31 +190,31 @@ namespace Modular.Web.Extensions
                     options.Password.RequireLowercase = false;
                     options.Password.RequiredUniqueChars = 0;
                 })
-                .AddRoleStore<Role>()
-                .AddUserStore<User>()
+                .AddRoleStore<SimplRoleStore>()
+                .AddUserStore<SimplUserStore>()
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie()
-                //.AddFacebook(x =>
-                //{
-                //    x.AppId = configuration["Authentication:Facebook:AppId"];
-                //    x.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+                .AddFacebook(x =>
+                {
+                    x.AppId = configuration["Authentication:Facebook:AppId"];
+                    x.AppSecret = configuration["Authentication:Facebook:AppSecret"];
 
-                //    x.Events = new OAuthEvents
-                //    {
-                //        OnRemoteFailure = ctx => HandleRemoteLoginFailure(ctx)
-                //    };
-                //})
-                //.AddGoogle(x =>
-                //{
-                //    x.ClientId = configuration["Authentication:Google:ClientId"];
-                //    x.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-                //    x.Events = new OAuthEvents
-                //    {
-                //        OnRemoteFailure = ctx => HandleRemoteLoginFailure(ctx)
-                //    };
-                //})
+                    x.Events = new OAuthEvents
+                    {
+                        OnRemoteFailure = ctx => HandleRemoteLoginFailure(ctx)
+                    };
+                })
+                .AddGoogle(x =>
+                {
+                    x.ClientId = configuration["Authentication:Google:ClientId"];
+                    x.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+                    x.Events = new OAuthEvents
+                    {
+                        OnRemoteFailure = ctx => HandleRemoteLoginFailure(ctx)
+                    };
+                })
                 //.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 //{
                 //    options.TokenValidationParameters = new TokenValidationParameters
@@ -253,7 +261,9 @@ namespace Modular.Web.Extensions
         {
             services.AddDbContextPool<SimplDbContext>(options =>
                 options.UseSqlServer(Modular.Core.Web.Conexiondb.ConexiondbString(),
-                    b => b.MigrationsAssembly("WebApplication")));
+                    b => b.MigrationsAssembly("WebApplication"))
+                .EnableSensitiveDataLogging()
+                );
             return services;
         }
 

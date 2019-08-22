@@ -8,9 +8,9 @@ using Modular.Core.Data;
 using Modular.Core;
 using Modular.Modules.Core.Models;
 using Microsoft.Extensions.Configuration;
-using Modular.Modules.Core.Extensions;
+using Modular.Core.Models;
 
-namespace SimplCommerce.Module.Core.Extensions
+namespace Modular.Modules.Core.Extensions
 {
     public class WorkContext : IWorkContext
     {

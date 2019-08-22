@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -46,14 +47,22 @@ namespace Modular.WebApplication
             GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
 
-            services.AddModules(_hostingEnvironment.ContentRootPath);
-
-            services.Configure<CookiePolicyOptions>(options =>
+            try
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+                services.AddModules(_hostingEnvironment.ContentRootPath);
+
+                services.Configure<CookiePolicyOptions>(options =>
+                {
+                    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
+
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
 
 
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -88,6 +97,8 @@ namespace Modular.WebApplication
                 moduleInitializer.ConfigureServices(services);
             }
 
+            services.AddScoped<ServiceFactory>(p => p.GetService);
+            services.AddScoped<IMediator, Mediator>();
 
 
             //string xx = _hostingEnvironment.WebRootPath;

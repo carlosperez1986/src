@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Modular.Core.Models;
-using Modular.Module.Core.Models;
 
 namespace Modular.Modules.Core.Models
 {

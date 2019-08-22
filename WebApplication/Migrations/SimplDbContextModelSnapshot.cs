@@ -89,99 +89,6 @@ namespace WebApplication.Migrations
                     b.ToTable("Core_UserToken");
                 });
 
-            modelBuilder.Entity("Modular.Module.Core.Models.Country", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code3")
-                        .HasMaxLength(450);
-
-                    b.Property<bool>("IsBillingEnabled");
-
-                    b.Property<bool>("IsCityEnabled");
-
-                    b.Property<bool>("IsDistrictEnabled");
-
-                    b.Property<bool>("IsShippingEnabled");
-
-                    b.Property<bool>("IsZipCodeEnabled");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Core_Country");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "VN",
-                            Code3 = "VNM",
-                            IsBillingEnabled = true,
-                            IsCityEnabled = false,
-                            IsDistrictEnabled = true,
-                            IsShippingEnabled = true,
-                            IsZipCodeEnabled = false,
-                            Name = "Việt Nam"
-                        },
-                        new
-                        {
-                            Id = "US",
-                            Code3 = "USA",
-                            IsBillingEnabled = true,
-                            IsCityEnabled = true,
-                            IsDistrictEnabled = false,
-                            IsShippingEnabled = true,
-                            IsZipCodeEnabled = true,
-                            Name = "United States"
-                        });
-                });
-
-            modelBuilder.Entity("Modular.Module.Core.Models.StateOrProvince", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(450);
-
-                    b.Property<string>("CountryId")
-                        .HasMaxLength(450);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(450);
-
-                    b.Property<string>("Type")
-                        .HasMaxLength(450);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Core_StateOrProvince");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CountryId = "VN",
-                            Name = "Hồ Chí Minh",
-                            Type = "Thành Phố"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Code = "WA",
-                            CountryId = "US",
-                            Name = "Washington"
-                        });
-                });
-
             modelBuilder.Entity("Modular.Modules.Core.Models.Address", b =>
                 {
                     b.Property<long>("Id")
@@ -287,6 +194,85 @@ namespace WebApplication.Migrations
                             IsVisibleInCommonSettingPage = true,
                             Module = "Core",
                             Value = "2"
+                        },
+                        new
+                        {
+                            Id = "SmtpServer",
+                            IsVisibleInCommonSettingPage = false,
+                            Module = "EmailSenderSmpt",
+                            Value = "smtp.gmail.com"
+                        },
+                        new
+                        {
+                            Id = "SmtpPort",
+                            IsVisibleInCommonSettingPage = false,
+                            Module = "EmailSenderSmpt",
+                            Value = "587"
+                        },
+                        new
+                        {
+                            Id = "SmtpUsername",
+                            IsVisibleInCommonSettingPage = false,
+                            Module = "EmailSenderSmpt",
+                            Value = ""
+                        },
+                        new
+                        {
+                            Id = "SmtpPassword",
+                            IsVisibleInCommonSettingPage = false,
+                            Module = "EmailSenderSmpt",
+                            Value = ""
+                        });
+                });
+
+            modelBuilder.Entity("Modular.Modules.Core.Models.Country", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code3")
+                        .HasMaxLength(450);
+
+                    b.Property<bool>("IsBillingEnabled");
+
+                    b.Property<bool>("IsCityEnabled");
+
+                    b.Property<bool>("IsDistrictEnabled");
+
+                    b.Property<bool>("IsShippingEnabled");
+
+                    b.Property<bool>("IsZipCodeEnabled");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Core_Country");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "VN",
+                            Code3 = "VNM",
+                            IsBillingEnabled = true,
+                            IsCityEnabled = false,
+                            IsDistrictEnabled = true,
+                            IsShippingEnabled = true,
+                            IsZipCodeEnabled = false,
+                            Name = "Việt Nam"
+                        },
+                        new
+                        {
+                            Id = "US",
+                            Code3 = "USA",
+                            IsBillingEnabled = true,
+                            IsCityEnabled = true,
+                            IsDistrictEnabled = false,
+                            IsShippingEnabled = true,
+                            IsZipCodeEnabled = true,
+                            Name = "United States"
                         });
                 });
 
@@ -387,6 +373,27 @@ namespace WebApplication.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Modular.Modules.Core.Models.Media", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Caption")
+                        .HasMaxLength(450);
+
+                    b.Property<string>("FileName")
+                        .HasMaxLength(450);
+
+                    b.Property<int>("FileSize");
+
+                    b.Property<int>("MediaType");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Core_Media");
+                });
+
             modelBuilder.Entity("Modular.Modules.Core.Models.Role", b =>
                 {
                     b.Property<long>("Id")
@@ -439,6 +446,48 @@ namespace WebApplication.Migrations
                             ConcurrencyStamp = "71f10604-8c4d-4a7d-ac4a-ffefb11cefeb",
                             Name = "vendor",
                             NormalizedName = "VENDOR"
+                        });
+                });
+
+            modelBuilder.Entity("Modular.Modules.Core.Models.StateOrProvince", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(450);
+
+                    b.Property<string>("CountryId")
+                        .HasMaxLength(450);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.Property<string>("Type")
+                        .HasMaxLength(450);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Core_StateOrProvince");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CountryId = "VN",
+                            Name = "Hồ Chí Minh",
+                            Type = "Thành Phố"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Code = "WA",
+                            CountryId = "US",
+                            Name = "Washington"
                         });
                 });
 
@@ -591,6 +640,35 @@ namespace WebApplication.Migrations
                     b.ToTable("Core_UserAddress");
                 });
 
+            modelBuilder.Entity("Modular.Modules.Core.Models.UserDocuments", b =>
+                {
+                    b.Property<long>("DocumentId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<long>("Id");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTimeOffset>("LatestUpdatedOn");
+
+                    b.Property<string>("Path")
+                        .HasMaxLength(150);
+
+                    b.Property<string>("Type")
+                        .HasMaxLength(20);
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("DocumentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Core_UserDocuments");
+                });
+
             modelBuilder.Entity("Modular.Modules.Core.Models.UserRole", b =>
                 {
                     b.Property<long>("UserId");
@@ -715,32 +793,13 @@ namespace WebApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("IdTest");
+
                     b.Property<string>("Text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TestModels");
-                });
-
-            modelBuilder.Entity("SimplCommerce.Module.Core.Models.Media", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Caption")
-                        .HasMaxLength(450);
-
-                    b.Property<string>("FileName")
-                        .HasMaxLength(450);
-
-                    b.Property<int>("FileSize");
-
-                    b.Property<int>("MediaType");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Core_Media");
+                    b.ToTable("ModuleC_TestModels");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
@@ -775,17 +834,9 @@ namespace WebApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Modular.Module.Core.Models.StateOrProvince", b =>
-                {
-                    b.HasOne("Modular.Module.Core.Models.Country", "Country")
-                        .WithMany("StatesOrProvinces")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("Modular.Modules.Core.Models.Address", b =>
                 {
-                    b.HasOne("Modular.Module.Core.Models.Country", "Country")
+                    b.HasOne("Modular.Modules.Core.Models.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -795,7 +846,7 @@ namespace WebApplication.Migrations
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Modular.Module.Core.Models.StateOrProvince", "StateOrProvince")
+                    b.HasOne("Modular.Modules.Core.Models.StateOrProvince", "StateOrProvince")
                         .WithMany()
                         .HasForeignKey("StateOrProvinceId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -803,7 +854,7 @@ namespace WebApplication.Migrations
 
             modelBuilder.Entity("Modular.Modules.Core.Models.District", b =>
                 {
-                    b.HasOne("Modular.Module.Core.Models.StateOrProvince", "StateOrProvince")
+                    b.HasOne("Modular.Modules.Core.Models.StateOrProvince", "StateOrProvince")
                         .WithMany()
                         .HasForeignKey("StateOrProvinceId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -814,6 +865,14 @@ namespace WebApplication.Migrations
                     b.HasOne("Modular.Modules.Core.Models.EntityType", "EntityType")
                         .WithMany()
                         .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Modular.Modules.Core.Models.StateOrProvince", b =>
+                {
+                    b.HasOne("Modular.Modules.Core.Models.Country", "Country")
+                        .WithMany("StatesOrProvinces")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -839,6 +898,14 @@ namespace WebApplication.Migrations
 
                     b.HasOne("Modular.Modules.Core.Models.User", "User")
                         .WithMany("UserAddresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Modular.Modules.Core.Models.UserDocuments", b =>
+                {
+                    b.HasOne("Modular.Modules.Core.Models.User", "User")
+                        .WithMany("UserDocuments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

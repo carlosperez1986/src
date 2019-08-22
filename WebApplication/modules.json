@@ -6,5 +6,9 @@
     {
         "id": "Modular.Modules.ModuleC",
         "version": "1.0.0"
+    },
+    {
+        "id": "Modular.Modules.EmailSMTP",
+        "version": "1.0.0"
     }
 ]

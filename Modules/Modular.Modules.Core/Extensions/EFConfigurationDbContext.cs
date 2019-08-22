@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Modular.Modules.Core.Models;
-using SimplCommerce.Module.Core.Models;
 
 namespace Modular.Modules.Core.Extensions
 {

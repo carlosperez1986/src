@@ -33,6 +33,8 @@ namespace Modular.Modules.Core.Models
 
         public IList<UserAddress> UserAddresses { get; set; } = new List<UserAddress>();
 
+        public IList<UserDocuments> UserDocuments { get; set; }
+
         public UserAddress DefaultShippingAddress { get; set; }
 
         public long? DefaultShippingAddressId { get; set; }

@@ -2,15 +2,16 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Modular.Core.Domain.Models;
+using Modular.Core.Models;
 
 namespace Modular.Modules.ModuleC.Models
 {
-    public class TestModels : Entity
-    {
+	public class TestModels : EntityBase
+	{
 
-        public new long Id { get; set; }
+		public long IdTest { get; set; }
 
-        public string Text { get; set; }
+		public string Text { get; set; }
 
-    }
+	}
 }

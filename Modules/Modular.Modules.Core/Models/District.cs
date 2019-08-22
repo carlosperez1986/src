@@ -1,5 +1,4 @@
 ﻿using Modular.Core.Models;
-using Modular.Module.Core.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Modular.Modules.Core.Models

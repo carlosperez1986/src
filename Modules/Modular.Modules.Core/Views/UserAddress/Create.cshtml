@@ -1,0 +1,22 @@
+﻿@model Modular.Modules.Core.ViewModels.UserAddressFormViewModel
+@{
+    ViewData["Title"] = "Create address";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <partial name="_AccountMenu" />
+    </div>
+    <div class="col-md-9">
+        <h2>["Create Address"]</h2>
+        <hr />
+        <form asp-controller="UserAddress" asp-action="Create" method="POST">
+            <partial name="_AddressForm" model="Model" />
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+    @*<script src="~/modules/core/user-address.js"></script>*@
+}

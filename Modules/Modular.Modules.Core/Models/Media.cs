@@ -2,7 +2,7 @@
 using Modular.Core.Models;
 using Modular.Modules.Core.Models;
 
-namespace SimplCommerce.Module.Core.Models
+namespace Modular.Modules.Core.Models
 {
     public class Media : EntityBase
     {

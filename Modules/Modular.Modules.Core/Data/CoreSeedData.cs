@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Modular.Module.Core.Models;
 using Modular.Modules.Core.Models;
 
 namespace Modular.Modules.Core.Data

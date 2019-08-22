@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Modular.Core.Models;
 
-namespace Modular.Module.Core.Models
+namespace Modular.Modules.Core.Models
 {
     public class StateOrProvince : EntityBase
     {

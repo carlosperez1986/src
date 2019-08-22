@@ -16,6 +16,11 @@ namespace Modular.Modules.Core.Services
             return Task.FromResult(0);
         }
 
+        public Task SendEmailAsync(string email, string subject, string message, bool isHtml = false)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task SendSmsAsync(string number, string message)
         {
             // Plug in your SMS service here to send a text message.

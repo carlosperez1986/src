@@ -65,6 +65,7 @@ namespace Modular.Modules.Core.Data
                     .WithMany()
                     .HasForeignKey(x => x.DefaultBillingAddressId)
                     .OnDelete(DeleteBehavior.Restrict);
+
             });
 
             modelBuilder.Entity<UserAddress>()
@@ -88,6 +89,17 @@ namespace Modular.Modules.Core.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
+            modelBuilder.Entity<UserDocuments>(ud =>
+            {
+                ud.HasOne(xx => xx.User)
+                    .WithMany(xx => xx.UserDocuments)
+                    .HasForeignKey(xx => xx.UserId);
+
+                ud.HasKey(x => x.DocumentId);
+                ud.HasIndex(x => x.UserId);
+                ud.ToTable("Core_UserDocuments");
+
+            });
             //modelBuilder.Entity<CustomerGroup>()
             //    .HasIndex(d => d.Name)
             //    .IsUnique();

@@ -1,0 +1,6 @@
+{
+    "id": "Modular.Modules.EmailSMTP",
+    "name": "EmailSMTP",
+    "isBundledWithHost": true,
+    "version": "1.0.0"
+}

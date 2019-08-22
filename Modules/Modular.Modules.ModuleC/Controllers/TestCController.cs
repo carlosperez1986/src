@@ -38,11 +38,12 @@ namespace Modular.Modules.ModuleC.Controllers
         public IActionResult Index()
         {
 
-            var tModel = new TestModels { Text = "Decription X" };
+            //var tModel = new TestModels { Text = "Decription X" };
 
-            _testModel.Add(tModel);
+            //_testModel.Add(tModel);
 
-            _testModel.SaveChange();
+            //_testModel.SaveChange();
+
             var xx = _testModel.Query();
 
             ViewBag.AnotherTestData = _anotherTestService.Test() + " " + xx.Count();

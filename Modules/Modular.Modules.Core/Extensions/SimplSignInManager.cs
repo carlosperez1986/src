@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Modular.Modules.Core.Events;
 
-namespace SimplCommerce.Module.Core.Extensions
+namespace Modular.Modules.Core.Extensions
 {
     public class SimplSignInManager<TUser> : SignInManager<TUser> where TUser : class
     {
@@ -28,7 +28,7 @@ namespace SimplCommerce.Module.Core.Extensions
         public override async Task SignInAsync(TUser user, bool isPersistent, string authenticationMethod = null)
         {
             var userId = await UserManager.GetUserIdAsync(user);
-            await _mediator.Publish(new UserSignedIn {UserId = long.Parse(userId)});
+            await _mediator.Publish(new UserSignedIn { UserId = long.Parse(userId) });
             await base.SignInAsync(user, isPersistent, authenticationMethod);
         }
     }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication.Migrations
 {
-    public partial class Initial : Migration
+    public partial class new_update : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -118,16 +118,17 @@ namespace WebApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TestModels",
+                name: "ModuleC_TestModels",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    IdTest = table.Column<long>(nullable: false),
                     Text = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TestModels", x => x.Id);
+                    table.PrimaryKey("PK_ModuleC_TestModels", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -383,6 +384,31 @@ namespace WebApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Core_UserDocuments",
+                columns: table => new
+                {
+                    DocumentId = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    LatestUpdatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    Type = table.Column<string>(maxLength: 20, nullable: true),
+                    Path = table.Column<string>(maxLength: 150, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    UserId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Core_UserDocuments", x => x.DocumentId);
+                    table.ForeignKey(
+                        name: "FK_Core_UserDocuments_Core_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Core_User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Core_UserLogin",
                 columns: table => new
                 {
@@ -455,7 +481,11 @@ namespace WebApplication.Migrations
                     { "Theme", false, "Core", "Generic" },
                     { "Global.DefaultCultureUI", true, "Core", "en-US" },
                     { "Global.CurrencyCulture", true, "Core", "en-US" },
-                    { "Global.CurrencyDecimalPlace", true, "Core", "2" }
+                    { "Global.CurrencyDecimalPlace", true, "Core", "2" },
+                    { "SmtpServer", false, "EmailSenderSmpt", "smtp.gmail.com" },
+                    { "SmtpPort", false, "EmailSenderSmpt", "587" },
+                    { "SmtpUsername", false, "EmailSenderSmpt", "" },
+                    { "SmtpPassword", false, "EmailSenderSmpt", "" }
                 });
 
             migrationBuilder.InsertData(
@@ -463,8 +493,8 @@ namespace WebApplication.Migrations
                 columns: new[] { "Id", "Code3", "IsBillingEnabled", "IsCityEnabled", "IsDistrictEnabled", "IsShippingEnabled", "IsZipCodeEnabled", "Name" },
                 values: new object[,]
                 {
-                    { "VN", "VNM", true, false, true, true, false, "Việt Nam" },
-                    { "US", "USA", true, true, false, true, true, "United States" }
+                    { "US", "USA", true, true, false, true, true, "United States" },
+                    { "VN", "VNM", true, false, true, true, false, "Việt Nam" }
                 });
 
             migrationBuilder.InsertData(
@@ -477,10 +507,10 @@ namespace WebApplication.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 4L, "71f10604-8c4d-4a7d-ac4a-ffefb11cefeb", "vendor", "VENDOR" },
-                    { 3L, "d4754388-8355-4018-b728-218018836817", "guest", "GUEST" },
                     { 1L, "4776a1b2-dbe4-4056-82ec-8bed211d1454", "admin", "ADMIN" },
-                    { 2L, "00d172be-03a0-4856-8b12-26d63fcf4374", "customer", "CUSTOMER" }
+                    { 2L, "00d172be-03a0-4856-8b12-26d63fcf4374", "customer", "CUSTOMER" },
+                    { 3L, "d4754388-8355-4018-b728-218018836817", "guest", "GUEST" },
+                    { 4L, "71f10604-8c4d-4a7d-ac4a-ffefb11cefeb", "vendor", "VENDOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -612,6 +642,11 @@ namespace WebApplication.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Core_UserDocuments_UserId",
+                table: "Core_UserDocuments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Core_UserLogin_UserId",
                 table: "Core_UserLogin",
                 column: "UserId");
@@ -682,6 +717,9 @@ namespace WebApplication.Migrations
                 name: "Core_UserClaim");
 
             migrationBuilder.DropTable(
+                name: "Core_UserDocuments");
+
+            migrationBuilder.DropTable(
                 name: "Core_UserLogin");
 
             migrationBuilder.DropTable(
@@ -694,7 +732,7 @@ namespace WebApplication.Migrations
                 name: "Core_WidgetInstance");
 
             migrationBuilder.DropTable(
-                name: "TestModels");
+                name: "ModuleC_TestModels");
 
             migrationBuilder.DropTable(
                 name: "Core_EntityType");
