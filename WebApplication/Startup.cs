@@ -47,6 +47,7 @@ namespace Modular.WebApplication
             GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
 
+
             try
             {
                 services.AddModules(_hostingEnvironment.ContentRootPath);
@@ -76,6 +77,12 @@ namespace Modular.WebApplication
             services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
 
+            //services.AddDistributedMemoryCache();
+            //services.AddSession(options =>
+            //{
+            //    options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time   
+            //});
+
             //services.LoadInstalledModules(modules, _hostingEnvironment);
 
             //services.AddCustomizedDataStore(Configuration);
@@ -87,7 +94,15 @@ namespace Modular.WebApplication
             {
                 options.ViewLocationExpanders.Add(new ModuleViewLocationExpander());
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time
+                options.Cookie.Name = ".MyApplication";
+            });
 
             var sp = services.BuildServiceProvider();
             var moduleInitializers = sp.GetServices<Core.Modules.IModuleInitializer>();
@@ -98,8 +113,10 @@ namespace Modular.WebApplication
             }
 
             services.AddScoped<ServiceFactory>(p => p.GetService);
-            services.AddScoped<IMediator, Mediator>();
 
+            //services.AddScoped<IMediator, Mediator>();
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             //string xx = _hostingEnvironment.WebRootPath;
 
@@ -207,6 +224,8 @@ namespace Modular.WebApplication
                 );
                 app.UseHsts();
             }
+
+            app.UseSession();
 
             app.UseWhen(
                 context => !context.Request.Path.StartsWithSegments("/api"),

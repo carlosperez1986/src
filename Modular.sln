@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Modules.ModuleC", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Modules.EmailSMTP", "Modules\Modular.Modules.EmailSMTP\Modular.Modules.EmailSMTP.csproj", "{AE619035-1861-4052-9B8F-941A4EAC3DD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modular.Modules.SessionTest", "Modules\Modular.Modules.SessionTest\Modular.Modules.SessionTest.csproj", "{731F9709-EE17-4D9C-B45C-C90DCA11EC75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{AE619035-1861-4052-9B8F-941A4EAC3DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE619035-1861-4052-9B8F-941A4EAC3DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE619035-1861-4052-9B8F-941A4EAC3DD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731F9709-EE17-4D9C-B45C-C90DCA11EC75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731F9709-EE17-4D9C-B45C-C90DCA11EC75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731F9709-EE17-4D9C-B45C-C90DCA11EC75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731F9709-EE17-4D9C-B45C-C90DCA11EC75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{CE54A5CA-D4CB-4B5A-8DDD-C2969487DE0C} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 		{E383071C-AA08-4FB1-95C3-B6CC6B1A5C21} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 		{AE619035-1861-4052-9B8F-941A4EAC3DD6} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
+		{731F9709-EE17-4D9C-B45C-C90DCA11EC75} = {C42442A9-441E-452A-82E3-FCA2EB29D835}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73D8136C-F87F-4B3E-8474-B37FD4B377B3}

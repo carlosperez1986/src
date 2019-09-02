@@ -26,6 +26,62 @@
       <Content Include="Modules\Modular.Modules.Core\Views\Manage\Documents.cshtml">
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <Content Include="Modules\Modular.Modules.Core\Views\Manage\ChangePassword.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Modules\Modular.Modules.Core\Views\Manage\Index.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Modules\Modular.Modules.Core\Views\Manage\ManageLogins.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Modules\Modular.Modules.Core\Views\Manage\SetPassword.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Modules\Modular.Modules.Core\Views\Manage\UserInfo.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Modules\Modular.Modules.Core\Views\Manage\UserSettings.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Modules\Modular.Modules.SessionTest\Views\_ViewImports.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Modules\Modular.Modules.SessionTest\Views\SessionTest\Index.cshtml">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\.DS_Store" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Modular.Core.pdb" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.xml" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Modular.Core.dll" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Modular.Modules.Test.dll" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.xml" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Modular.Modules.Core.pdb" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Modular.Modules.Test.pdb" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.xml" />
+      <None Remove="Modules\Modular.Modules.Test\bin\Debug\netstandard2.0\Modular.Modules.Core.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\DL.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\DL.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.ModuleC.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Core.dll" />
+      <None Remove="Modules\Modular.Modules.SessionTest\bin\Debug\netcoreapp2.2\Modular.Modules.SessionTest.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.dll" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\ExtraDepenencyTest.pdb" />
+      <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\netcoreapp2.2\Modular.Modules.Core.pdb" />
     </ItemGroup>
     <ItemGroup>
       <None Include="wwwroot\css\site.css" />
@@ -497,5 +553,18 @@
       <None Include="Modules\Modular.Modules.Core\Views\Account\ResetPasswordConfirmation.cshtml" />
       <None Include="Modules\Modular.Modules.Core\Views\Account\SendCode.cshtml" />
       <None Include="Modules\Modular.Modules.Core\Views\Account\VerifyCode.cshtml" />
+      <None Include="modules.json" />
+      <None Include="appsettings.json" />
+      <None Include="Modules\Modular.Modules.ModuleC\module.json" />
+      <None Include="Modules\Modular.Modules.SessionTest\module.json" />
+      <None Include="Modules\Modular.Modules.ModuleC\Views\Shared\Components\EmployeeList\Default.cshtml" />
+      <None Include="Modules\Modular.Modules.ModuleC\Views\TestC\Index.cshtml" />
+      <None Include="Modules\Modular.Modules.ModuleC\Views\_ViewImports.cshtml" />
+      <None Include="Modules\Modular.Modules.ModuleC\Views\_ViewStart.cshtml" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Modules\Modular.Modules.Core\Views\Manage\" />
+      <Folder Include="Modules\Modular.Modules.SessionTest\" />
+      <Folder Include="Modules\Modular.Modules.SessionTest\Views\" />
     </ItemGroup>
 </Project>

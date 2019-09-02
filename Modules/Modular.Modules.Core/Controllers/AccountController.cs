@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Modular.Core.Data;
+using Modular.Core.Interfaces;
 using Modular.Modules.Core.Models;
 using Modular.Modules.Core.Services;
 using Modular.Modules.Core.ViewModels.Account;
@@ -18,6 +23,15 @@ using Modular.Modules.Core.ViewModels.Account;
 namespace Modular.Modules.Core.Controllers
 {
 
+    public class Notifier1 : INotificationHandler<NotificationMessage>
+    {
+        public Task Handle(NotificationMessage notification, CancellationToken cancellationToken)
+        {
+            Console.Write($"Debugging from Notifier 11111. Message  : {notification.NotifyText.Session.GetString("hola")} ");
+            return Task.CompletedTask;
+        }
+    }
+
     [Authorize]
     public class AccountController : Controller
     {
@@ -26,20 +40,29 @@ namespace Modular.Modules.Core.Controllers
         private readonly IEmailSender _emailSender;
         // private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly ISeessionData _sdata;
+        private readonly IMediator _mediator;
+        private IHttpContextAccessor _httpcontext;
 
         public AccountController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IEmailSender emailSender,
             //  ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ISeessionData sdata,
+            ILoggerFactory loggerFactory,
+            IMediator notification,
+            IHttpContextAccessor httpcontext
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             //   _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
-
+            _sdata = sdata;
+            _mediator = notification;
+            _httpcontext = httpcontext;
         }
 
         //
@@ -47,8 +70,13 @@ namespace Modular.Modules.Core.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("login")]
-        public IActionResult Login(string returnUrl = null)
+        public async Task<IActionResult> Login(string returnUrl = null)
         {
+            _sdata.PruebaC();
+            _httpcontext.HttpContext.Session.SetString("hola", "xx1");
+
+            await _mediator.Publish<NotificationMessage>(new NotificationMessage() { NotifyText = _httpcontext.HttpContext });
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }

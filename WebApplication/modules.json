@@ -10,5 +10,11 @@
     {
         "id": "Modular.Modules.EmailSMTP",
         "version": "1.0.0"
-    }
+    },
+    {
+        "id": "Modular.Modules.SessionTest",
+        "version": "1.0.0"
+    },
+
+
 ]

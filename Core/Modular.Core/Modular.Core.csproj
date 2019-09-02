@@ -9,11 +9,14 @@
 <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
 </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\Models\" />
     <Folder Include="Web\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="IModuleInitializer.cs" />
