@@ -14,5 +14,7 @@ namespace Modular.Core
         public Version Version { get; set; }
 
         public Assembly Assembly { get; set; }
+
+        public string Path { get; set; }
     }
 }

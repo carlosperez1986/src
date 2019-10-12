@@ -40,7 +40,6 @@ namespace Modular.Modules.Core.Controllers
         private readonly IEmailSender _emailSender;
         // private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
-        private readonly ISeessionData _sdata;
         private readonly IMediator _mediator;
         private IHttpContextAccessor _httpcontext;
 
@@ -48,8 +47,7 @@ namespace Modular.Modules.Core.Controllers
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IEmailSender emailSender,
-            //  ISmsSender smsSender,
-            ISeessionData sdata,
+            //  ISmsSender smsSender, 
             ILoggerFactory loggerFactory,
             IMediator notification,
             IHttpContextAccessor httpcontext
@@ -60,7 +58,7 @@ namespace Modular.Modules.Core.Controllers
             _emailSender = emailSender;
             //   _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
-            _sdata = sdata;
+
             _mediator = notification;
             _httpcontext = httpcontext;
         }
@@ -72,12 +70,15 @@ namespace Modular.Modules.Core.Controllers
         [Route("login")]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
-            _sdata.PruebaC();
+            var pathBase = HttpContext.Request.PathBase;
+
             _httpcontext.HttpContext.Session.SetString("hola", "xx1");
+
 
             await _mediator.Publish<NotificationMessage>(new NotificationMessage() { NotifyText = _httpcontext.HttpContext });
 
             ViewData["ReturnUrl"] = returnUrl;
+
             return View();
         }
 
@@ -95,6 +96,7 @@ namespace Modular.Modules.Core.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");

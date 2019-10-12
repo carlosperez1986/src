@@ -19,8 +19,12 @@ namespace Modular.WebApplication.Extensions
                 {
                     var moduleViewLocations = new string[]
                     {
+                            "Modules/Modular.Modules." + module + "/Views/{1}/{0}.cshtml",
+                            "Modules/Modular.Modules." + module + "/Views/Shared/{0}.cshtml",
                             "/Modules/Modular.Modules." + module + "/Views/{1}/{0}.cshtml",
-                            "/Modules/Modular.Modules." + module + "/Views/Shared/{0}.cshtml"
+                            "/Modules/Modular.Modules." + module + "/Views/Shared/{0}.cshtml",
+                             "../Modules/Modular.Modules." + module + "/Views/{1}/{0}.cshtml",
+                            "../Modules/Modular.Modules." + module + "/Views/Shared/{0}.cshtml"
                     };
 
                     viewLocations = moduleViewLocations.Concat(viewLocations);

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,32 +33,30 @@ namespace Modular.WebApplication
     {
         private readonly IList<ModuleInfo> modules = new List<ModuleInfo>();
 
-        private readonly IHostingEnvironment _hostingEnvironment;
+        // This method gets called by the runtime. Use this method to add services to the containerprivate readonly IList<ModuleInfo> modules = new List<ModuleInfo>();
+
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IConfiguration _configuration;
 
-        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
         }
 
+        readonly string CorsAllowAll = "_CorsAllowAll";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
+            //string projectDirectory = Directory.GetParent(WebRootPath).Parent.FullName;
+            //GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath.Replace("Modular.WebHostApp","");
             GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
-
 
             try
             {
-                services.AddModules(_hostingEnvironment.ContentRootPath);
-
-                services.Configure<CookiePolicyOptions>(options =>
-                {
-                    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                    options.CheckConsentNeeded = context => true;
-                    options.MinimumSameSitePolicy = SameSiteMode.None;
-                });
+                services.AddModules(GlobalConfiguration.ContentRootPath);
 
             }
             catch (Exception ex)
@@ -68,25 +67,28 @@ namespace Modular.WebApplication
 
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
-            services.AddCustomizedDataStore(_configuration);
+            //services.AddCustomizedDataStore(_configuration);
 
-            services.AddCustomizedIdentity(_configuration);
+            //services.AddCustomizedIdentity(_configuration);
             services.AddHttpClient();
 
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
+            //services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
-
-            //services.AddDistributedMemoryCache();
-            //services.AddSession(options =>
-            //{
-            //    options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time   
-            //});
-
-            //services.LoadInstalledModules(modules, _hostingEnvironment);
 
             //services.AddCustomizedDataStore(Configuration);
             //services.AddCustomizedIdentity();
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(CorsAllowAll,
+            //    builder =>
+            //    {
+            //        builder.AllowAnyHeader()
+            //               .AllowAnyMethod()
+            //               .AllowAnyOrigin();
+            //    });
+            //});
 
             services.AddCustomizedMvc(GlobalConfiguration.Modules);
 
@@ -94,127 +96,53 @@ namespace Modular.WebApplication
             {
                 options.ViewLocationExpanders.Add(new ModuleViewLocationExpander());
             });
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => false; // Default is true, make it false
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             services.AddDistributedMemoryCache();
 
+            //usado para renderizar HTML//
+            // var invoiceHtml = await _viewRender.RenderViewToStringAsync("/InvoicePdf.cshtml", model);
+            //services.AddTransient<IRazorViewRenderer, RazorViewRenderer>();
+
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time
-                options.Cookie.Name = ".MyApplication";
+                options.IdleTimeout = TimeSpan.FromMinutes(300);//You can set Time  
             });
 
+            services.AddHttpContextAccessor();
+
+            services.AddAntiforgery(options => options.HeaderName = "X-XSRF-Token");
+
             var sp = services.BuildServiceProvider();
-            var moduleInitializers = sp.GetServices<Core.Modules.IModuleInitializer>();
+            var moduleInitializers = sp.GetServices<IModuleInitializer>();
 
             foreach (var moduleInitializer in moduleInitializers)
             {
                 moduleInitializer.ConfigureServices(services);
             }
 
-            services.AddScoped<ServiceFactory>(p => p.GetService);
-
+            services.AddMediatR(System.Reflection.Assembly.GetExecutingAssembly());
+            //services.AddSingleton<Core.Helpers.SessionHelper>();
+            //services.AddTransient<SetViewDataFilter>();
+            //services.AddScoped<ServiceFactory>(p => p.GetService);
             //services.AddScoped<IMediator, Mediator>();
-
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
-            //string xx = _hostingEnvironment.WebRootPath;
-
-            //var moduleRootFolder = _hostingEnvironment.ContentRootFileProvider.GetDirectoryContents("Modules");
-
-            //foreach (var moduleFolder in moduleRootFolder.Where(x => x.IsDirectory))
-            //{
-            //    var binFolder = new DirectoryInfo(Path.Combine(moduleFolder.PhysicalPath, "bin"));
-            //    if (!binFolder.Exists)
-            //    {
-            //        continue;
-            //    }
-
-            //    foreach (var file in binFolder.GetFileSystemInfos("*.dll", SearchOption.AllDirectories))
-            //    {
-            //        try
-            //        {
-            //            Assembly assembly;
-
-            //            try
-            //            {
-            //                assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(file.FullName);
-            //            }
-            //            catch (FileLoadException ex)
-            //            {
-            //                assembly = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(file.Name)));
-            //                if (assembly == null)
-            //                {
-            //                    throw;
-            //                }
-
-            //                string loadedAssemblyVersion = FileVersionInfo.GetVersionInfo(assembly.Location).FileVersion;
-            //                string tryToLoadAssemblyVersion = FileVersionInfo.GetVersionInfo(file.FullName).FileVersion;
-
-            //                // Or log the exception somewhere and don't add the module to list so that it will not be initialized
-            //                if (tryToLoadAssemblyVersion != loadedAssemblyVersion)
-            //                {
-            //                    throw new Exception($"Cannot load {file.FullName} {tryToLoadAssemblyVersion} because {assembly.Location} {loadedAssemblyVersion} has been loaded");
-            //                }
-            //                //if (ex.Message == "Assembly with same name is already loaded")
-            //                //{
-            //                //    continue;
-            //                //}
-            //                //throw;
-            //            }
-
-            //            if (assembly.FullName.Contains(moduleFolder.Name))
-            //            {
-            //                modules.Add(new ModuleInfo { Name = moduleFolder.Name, Assembly = assembly, Path = moduleFolder.PhysicalPath });
-            //            }
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            ex.Message.ToString();
-            //        }
-
-            //    }
-            //}
-
-            //var mvcBuilder = services.AddMvc();
-            //var moduleInitializerInterface = typeof(IModuleInitializer);
-            //foreach (var module in modules)
-            //{
-            //    // Register controller from modules
-            //    mvcBuilder.AddApplicationPart(module.Assembly);
-
-            //    // Registra los módulos para injectarlos // 
-            //    try
-            //    {
-            //        var moduleInitializerType = module.Assembly.GetTypes().Where(x => typeof(IModuleInitializer).IsAssignableFrom(x)).FirstOrDefault();
-
-            //        if (moduleInitializerType != null && moduleInitializerType != typeof(IModuleInitializer))
-            //        {
-            //            var moduleInitializer = (IModuleInitializer)Activator.CreateInstance(moduleInitializerType);
-            //            moduleInitializer.Init(services);
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        ex.Message.ToString();
-            //    }
-            //}
-
-            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            //services.AddCustomizedMvc(modules);
-
-            //return services.Build(Configuration, _hostingEnvironment);
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(o => o.LoginPath = new PathString("/account/login"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
@@ -225,32 +153,70 @@ namespace Modular.WebApplication
                 app.UseHsts();
             }
 
-            app.UseSession();
-
             app.UseWhen(
                 context => !context.Request.Path.StartsWithSegments("/api"),
                 a => a.UseStatusCodePagesWithReExecute("/Home/ErrorWithCode/{0}")
             );
 
+            //app.UseCors(CorsAllowAll);
+
             app.UseHttpsRedirection();
-            app.UseCustomizedStaticFiles(env);
+            app.UseSession();
+            app.UseAuthentication();
+            //app.UseIdentity();
+            //app.UseCustomizedStaticFiles(env);
             //app.UseSwagger();
             //app.UseSwaggerUI(c =>
             //{
             //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SimplCommerce API V1");
             //});
 
+
+            foreach (var module in GlobalConfiguration.Modules)
+            {
+                try
+                {
+                    var wwwrootDir = new DirectoryInfo(Path.Combine(module.Path.Replace("WebApplication", ""), "wwwroot"));
+                    //var wwwrootDir = new DirectoryInfo(Path.Combine(module.Path.Replace("Modular.WebHostApp", ""), "Clases"));
+
+                    if (!wwwrootDir.Exists)
+                    {
+                        continue;
+                    }
+
+                    app.UseStaticFiles(new StaticFileOptions()
+                    {
+                        FileProvider = new PhysicalFileProvider(Path.Combine(GlobalConfiguration.ContentRootPath, wwwrootDir.FullName)),
+                        RequestPath = new PathString("")
+                    });
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+
+            app.UseSession();
             app.UseCookiePolicy();
-            app.UseCustomizedIdentity();
+            //app.UseCustomizedIdentity();
             app.UseCustomizedRequestLocalization();
-            app.UseCustomizedMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
+            //app.UseCustomizedMvc();
 
             var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
             foreach (var moduleInitializer in moduleInitializers)
             {
                 moduleInitializer.Configure(app, env);
-            }
 
+            }
         }
+
     }
 }

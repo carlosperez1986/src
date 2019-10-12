@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -41,40 +42,75 @@ namespace Modular.Web.Extensions
         public static IServiceCollection AddModules(this IServiceCollection services, string contentRootPath)
         {
             const string moduleManifestName = "module.json";
+
+
             var modulesFolder = Path.Combine(contentRootPath, "Modules");
+            var dirPath = Assembly.GetExecutingAssembly().Location;
+            dirPath = Path.GetDirectoryName(dirPath);
+
             foreach (var module in _modulesConfig.GetModules())
             {
-                var moduleFolder = new DirectoryInfo(Path.Combine(modulesFolder, module.Id));
-                var moduleManifestPath = Path.Combine(moduleFolder.FullName, moduleManifestName);
-                if (!File.Exists(moduleManifestPath))
+                try
                 {
-                    throw new MissingModuleManifestException($"The manifest for the module '{moduleFolder.Name}' is not found.", moduleFolder.Name);
-                }
+                    var moduleFolder = new DirectoryInfo(Path.Combine(modulesFolder, module.Id));
 
-                using (var reader = new StreamReader(moduleManifestPath))
-                {
-                    string content = reader.ReadToEnd();
-                    dynamic moduleMetadata = JsonConvert.DeserializeObject(content);
+                    var moduleManifestPath = Path.Combine(moduleFolder.FullName, moduleManifestName);
 
-                    module.Name = moduleMetadata.name;
-                    module.IsBundledWithHost = moduleMetadata.isBundledWithHost;
-                }
-
-                if (!module.IsBundledWithHost)
-                {
-                    TryLoadModuleAssembly(moduleFolder.FullName, module);
-                    if (module.Assembly == null)
+                    if (!File.Exists(moduleManifestPath))
                     {
-                        throw new Exception($"Cannot find main assembly for module {module.Id}");
+                        throw new MissingModuleManifestException($"The manifest for the module '{moduleFolder.Name}' is not found.", moduleFolder.Name);
                     }
+
+                    using (var reader = new StreamReader(moduleManifestPath))
+                    {
+                        string content = reader.ReadToEnd();
+                        dynamic moduleMetadata = JsonConvert.DeserializeObject(content);
+
+                        module.Name = moduleMetadata.name;
+                        module.IsBundledWithHost = moduleMetadata.isBundledWithHost;
+                    }
+
+                    if (!module.IsBundledWithHost)
+                    {
+                        TryLoadModuleAssembly(moduleFolder.FullName, module);
+                        if (module.Assembly == null)
+                        {
+                            throw new Exception($"Cannot find main assembly for module {module.Id}");
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            module.Assembly = Assembly.Load(new AssemblyName(moduleFolder.Name));
+                        }
+                        catch (Exception ex)
+                        {
+                            AssemblyName a = AppDomain.CurrentDomain.GetAssemblies().SingleOrDefault(assembly => assembly.GetName().Name == moduleFolder.Name).GetName();
+
+                            module.Assembly = AssemblyLoadContext.Default.LoadFromAssemblyName(a);
+                        }
+
+
+                        // This will get the current PROJECT directory
+                        //string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
+                    }
+
+                    if (module.Assembly.FullName.Contains(moduleFolder.Name))
+                    {
+                        module.Name = moduleFolder.Name;
+                        module.Path = Path.Combine(modulesFolder, module.Id);
+                    }
+
+                    GlobalConfiguration.Modules.Add(module);
+
+                    RegisterModuleInitializerServices(module, ref services);
                 }
-                else
+                catch (Exception ex)
                 {
-                    module.Assembly = Assembly.Load(new AssemblyName(moduleFolder.Name));
+                    ex.Message.ToString();
                 }
 
-                GlobalConfiguration.Modules.Add(module);
-                RegisterModuleInitializerServices(module, ref services);
             }
 
             return services;
@@ -82,22 +118,31 @@ namespace Modular.Web.Extensions
 
         public static IServiceCollection AddCustomizedMvc(this IServiceCollection services, IList<ModuleInfo> modules)
         {
-            var mvcBuilder = services
+            try
+            {
+                var mvcBuilder = services
                 .AddMvc(o =>
                 {
                     o.EnableEndpointRouting = false;
                     //o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
-                    o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                    //o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+
+                    //o.Filters.AddService<SetViewDataFilter>();
+
                 })
                 .AddRazorOptions(o =>
                 {
                     foreach (var module in modules.Where(x => !x.IsBundledWithHost))
                     {
-                        o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(module.Assembly.Location));
+                        //o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(module.Assembly.Location));
                     }
                 })
                 .AddViewLocalization()
                 .AddModelBindingMessagesLocalizer(services)
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix, opts => { opts.ResourcesPath = "Resources"; })
+                .AddDataAnnotationsLocalization()
+                .AddSessionStateTempDataProvider()
+
                 //.AddDataAnnotationsLocalization(o =>
                 //{
                 //    var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
@@ -106,12 +151,19 @@ namespace Modular.Web.Extensions
                 //})
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            foreach (var module in modules.Where(x => !x.IsBundledWithHost))
+                foreach (var module in modules.Where(x => !x.IsBundledWithHost))
+                {
+                    AddApplicationPart(mvcBuilder, module.Assembly);
+                }
+
+                return services;
+            }
+            catch (Exception)
             {
-                AddApplicationPart(mvcBuilder, module.Assembly);
+
+                throw;
             }
 
-            return services;
         }
 
         /// <summary>
@@ -124,31 +176,44 @@ namespace Modular.Web.Extensions
         public static IMvcBuilder AddModelBindingMessagesLocalizer
             (this IMvcBuilder mvc, IServiceCollection services)
         {
-            return mvc.AddMvcOptions(o =>
+
+            try
             {
-                try
-                {
-                    var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
-                    var L = factory.Create(null);
+                return mvc;
+                //return services.AddRazorPages().AddMvcOptions(options => options.EnableEndpointRouting = false);
 
-                    o.ModelBindingMessageProvider.SetValueIsInvalidAccessor((x) => L["The value '{0}' is invalid.", x]);
-                    o.ModelBindingMessageProvider.SetValueMustBeANumberAccessor((x) => L["The field {0} must be a number.", x]);
-                    o.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor((x) => L["A value for the '{0}' property was not provided.", x]);
-                    o.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((x, y) => L["The value '{0}' is not valid for {1}.", x, y]);
-                    o.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => L["A value is required."]);
-                    o.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => L["A non-empty request body is required."]);
-                    o.ModelBindingMessageProvider.SetNonPropertyAttemptedValueIsInvalidAccessor((x) => L["The value '{0}' is not valid.", x]);
-                    o.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => L["The value provided is invalid."]);
-                    o.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => L["The field must be a number."]);
-                    o.ModelBindingMessageProvider.SetUnknownValueIsInvalidAccessor((x) => L["The supplied value is invalid for {0}.", x]);
-                    o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor((x) => L["Null value is invalid."]);
-                }
-                catch (Exception ex)
-                {
-                    ex.Message.ToString();
-                }
+                //return mvc.AddMvcOptions(o =>
+                //{
+                //    try
+                //    {
+                //        //var factory = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
+                //        //var L = factory.Create(null);
 
-            });
+                //        //o.ModelBindingMessageProvider.SetValueIsInvalidAccessor((x) => L["The value '{0}' is invalid.", x]);
+                //        //o.ModelBindingMessageProvider.SetValueMustBeANumberAccessor((x) => L["The field {0} must be a number.", x]);
+                //        //o.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor((x) => L["A value for the '{0}' property was not provided.", x]);
+                //        //o.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((x, y) => L["The value '{0}' is not valid for {1}.", x, y]);
+                //        //o.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => L["A value is required."]);
+                //        //o.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => L["A non-empty request body is required."]);
+                //        //o.ModelBindingMessageProvider.SetNonPropertyAttemptedValueIsInvalidAccessor((x) => L["The value '{0}' is not valid.", x]);
+                //        //o.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => L["The value provided is invalid."]);
+                //        //o.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => L["The field must be a number."]);
+                //        //o.ModelBindingMessageProvider.SetUnknownValueIsInvalidAccessor((x) => L["The supplied value is invalid for {0}.", x]);
+                //        //o.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor((x) => L["Null value is invalid."]);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        ex.Message.ToString();
+                //    }
+
+                //});
+            }
+            catch (Exception ex)
+            {
+                return mvc.AddMvcLocalization();
+            }
+
+
         }
 
         private static void AddApplicationPart(IMvcBuilder mvcBuilder, Assembly assembly)

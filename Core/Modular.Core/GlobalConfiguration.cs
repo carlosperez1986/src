@@ -14,6 +14,8 @@ namespace Modular.Core
 
         public static string WebRootPath { get; set; }
 
+        public static string Path { get; set; }
+
         public static string ContentRootPath { get; set; }
     }
 }

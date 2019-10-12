@@ -48,14 +48,14 @@ namespace Modular.Modules.ModuleC.Controllers
 
             string xccx = _sdata.PruebaC1();
 
-            _EMAIL.SendEmailAsync("", "", "", false);
+            //_EMAIL.SendEmailAsync("", "", "", false);
             //var tModel = new TestModels { Text = "Decription X" };
 
             //_testModel.Add(tModel);
 
             //_testModel.SaveChange();
 
-            _httpcontext.HttpContext.Session.SetString("hola", "xxxx");
+            string xX = _httpcontext.HttpContext.Session.GetString("hola");
 
             TestModels m = new TestModels();
             m.IdTest = 123123;

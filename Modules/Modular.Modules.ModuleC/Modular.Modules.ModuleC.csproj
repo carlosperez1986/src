@@ -40,6 +40,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Core\Modular.Core\Modular.Core.csproj" />
         <ProjectReference Include="..\Modular.Modules.Core\Modular.Modules.Core.csproj" />
+        <ProjectReference Include="..\..\Extratest\ExtraDepenencyTest\ExtraDepenencyTest.csproj" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="ExtraDepenencyTest">

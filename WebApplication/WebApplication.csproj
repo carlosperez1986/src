@@ -3,53 +3,20 @@
     <PropertyGroup>
         <TaskFolder Condition=" '$(MSBuildRuntimeType)' == 'Core' ">netcoreapp2.0</TaskFolder>
         <TaskFolder Condition=" '$(MSBuildRuntimeType)' != 'Core' ">net46</TaskFolder>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
     </PropertyGroup>
     <UsingTask AssemblyFile="..\..\build\$(TaskFolder)\SimplCommerce.MSBuildTasks.dll" TaskName="CopyModuleTask" />
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
         <UserSecretsId>aspnet-Modular.WebHost-dca604fa-ee10-4a6c-8e7d-8cc79dca8c8f</UserSecretsId>
         <EnableDefaultContentItems>false</EnableDefaultContentItems>
         <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
         <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Core\Modular.Core\Modular.Core.csproj" />
-        <ProjectReference Include="..\Modules\Modular.Modules.Core\Modular.Modules.Core.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
         <PackageReference Include="MailKit" Version="2.2.0" />
         <PackageReference Include="MimeKit" Version="2.2.0" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="Modules\Modular.Modules.Core\Views\Manage\Documents.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.Core\Views\Manage\ChangePassword.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.Core\Views\Manage\Index.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.Core\Views\Manage\ManageLogins.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.Core\Views\Manage\SetPassword.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.Core\Views\Manage\UserInfo.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.Core\Views\Manage\UserSettings.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.SessionTest\Views\_ViewImports.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Include="Modules\Modular.Modules.SessionTest\Views\SessionTest\Index.cshtml">
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     </ItemGroup>
     <ItemGroup>
       <None Remove="Modules\Modular.Modules.ModuleC\bin\Debug\.DS_Store" />
@@ -540,31 +507,20 @@
       <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
       <None Include="Views\Shared\404.cshtml" />
       <None Include="Views\Shared\Error.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\AccessDenied.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\ConfirmEmail.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\ExternalLoginConfirmation.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\ExternalLoginFailure.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\ForgotPassword.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\ForgotPasswordConfirmation.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\Lockout.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\Login.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\Register.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\ResetPassword.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\ResetPasswordConfirmation.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\SendCode.cshtml" />
-      <None Include="Modules\Modular.Modules.Core\Views\Account\VerifyCode.cshtml" />
       <None Include="modules.json" />
       <None Include="appsettings.json" />
       <None Include="Modules\Modular.Modules.ModuleC\module.json" />
-      <None Include="Modules\Modular.Modules.SessionTest\module.json" />
-      <None Include="Modules\Modular.Modules.ModuleC\Views\Shared\Components\EmployeeList\Default.cshtml" />
-      <None Include="Modules\Modular.Modules.ModuleC\Views\TestC\Index.cshtml" />
-      <None Include="Modules\Modular.Modules.ModuleC\Views\_ViewImports.cshtml" />
-      <None Include="Modules\Modular.Modules.ModuleC\Views\_ViewStart.cshtml" />
+      <None Include="Modules\Modular.Modules.Core\module.json" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Modules\Modular.Modules.Core\Views\Manage\" />
-      <Folder Include="Modules\Modular.Modules.SessionTest\" />
-      <Folder Include="Modules\Modular.Modules.SessionTest\Views\" />
+      <ProjectReference Include="..\Core\Modular.Core\Modular.Core.csproj">
+        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      </ProjectReference>
+      <ProjectReference Include="..\Modules\Modular.Modules.ModuleC\Modular.Modules.ModuleC.csproj">
+        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      </ProjectReference>
+      <ProjectReference Include="..\Modules\Modular.Modules.EmailSMTP\Modular.Modules.EmailSMTP.csproj">
+        <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      </ProjectReference>
     </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -30,11 +31,14 @@ namespace Modular.Modules.Core
             serviceCollection.AddTransient<IEntityService, EntityService>();
             serviceCollection.AddSingleton<SettingDefinitionProvider>();
             serviceCollection.AddScoped<ISettingService, SettingService>();
+            serviceCollection.AddScoped<IEmailSender, AuthMessageSender>();
             //serviceCollection.AddTransient<IThemeService, ThemeService>();
             //serviceCollection.AddTransient<ITokenService, TokenService>();
             //serviceCollection.AddTransient<IWidgetInstanceService, WidgetInstanceService>();
             serviceCollection.AddScoped<IWorkContext, WorkContext>();
-            serviceCollection.AddScoped<Modular.Core.Interfaces.ISeessionData, Pruebas>();
+            //serviceCollection.AddScoped<Modular.Core.Interfaces.ISeessionData, Pruebas>();
+
+            //serviceCollection.AddTransient<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
 
             serviceCollection.AddDistributedMemoryCache();
 

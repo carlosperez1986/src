@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Modular.Core;
 using Modular.Core.Data;
@@ -53,25 +54,50 @@ namespace Modular.WebApplication.Extensions
 
         public static IApplicationBuilder UseCustomizedMvc(this IApplicationBuilder app)
         {
-            try
-            {
-                app.UseMvc(routes =>
-                {
-                    // routes.Routes.Add(new UrlSlugRoute(routes.DefaultHandler));
+            app.UseHttpsRedirection();
 
-                    routes.MapRoute(
-                        name: "areaRoute",
-                        template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+            app.UseRouting();
 
-                    routes.MapRoute(
-                        "default",
-                        "{controller=Home}/{action=Index}/{id?}");
-                });
-            }
-            catch (Exception ex)
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                ex.Message.ToString();
-            }
+                endpoints.MapControllerRoute(
+                    name: "areaRoute",
+                    pattern: "{area:exists}/{controller}/{action}",
+                    defaults: new { action = "Index" });
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Account", action = "Login" });
+
+                endpoints.MapControllerRoute(
+                    name: "api",
+                    pattern: "api/{controller}/{id?}");
+            });
+
+            //try
+            //{
+
+
+            //    app.UseMvc(routes =>
+            //    {
+            //        // routes.Routes.Add(new UrlSlugRoute(routes.DefaultHandler));
+
+            //        routes.MapRoute(
+            //            name: "areaRoute",
+            //            template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+            //        routes.MapRoute(
+            //            "default",
+            //            "{controller=Home}/{action=Index}/{id?}");
+            //    });
+            //}
+            //catch (Exception ex)
+            //{
+            //    ex.Message.ToString();
+            //}
 
             return app;
         }
@@ -104,17 +130,21 @@ namespace Modular.WebApplication.Extensions
                         headers.CacheControl = new CacheControlHeaderValue
                         {
                             Public = true,
-                            MaxAge = TimeSpan.FromDays(60)
+                            MaxAge = TimeSpan.FromDays(-1)
                         };
                     }
                 });
             }
+
 
             return app;
         }
 
         public static IApplicationBuilder UseCustomizedRequestLocalization(this IApplicationBuilder app)
         {
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
+
             //string defaultCultureUI = GlobalConfiguration.DefaultCulture;
             //using (var scope = app.ApplicationServices.CreateScope())
             //{
